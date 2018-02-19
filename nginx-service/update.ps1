@@ -1,4 +1,6 @@
 
+$releases = 'https://chocolatey.org/api/v2/FindPackagesById()?id=%27nginx%27&$orderby=IsLatestVersion%20desc&$top=1'
+
 function global:au_SearchReplace {
    @{
         "nginx-service.nuspec" = @{
@@ -13,17 +15,11 @@ function global:au_SearchReplace {
     }
 }
 
-
-
 function global:au_GetLatest {
 
-	$info = choco info nginx
-	$info | % {
-		if($_ -match "^nginx\s([0-9\.]*)$"){
-			$version = $matches[1]
-		}
-	}
 
+	[xml]$info = (New-Object System.Net.WebClient).DownloadString($releases)
+	$version = $info.feed.entry.properties.Version
 
   @{
     Version = $version
