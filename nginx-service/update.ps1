@@ -4,13 +4,13 @@ $releases = 'https://chocolatey.org/api/v2/FindPackagesById()?id=%27nginx%27&$or
 function global:au_SearchReplace {
    @{
         "nginx-service.nuspec" = @{
-            "(\<dependency\s+?id=""nginx""\s+?version=""\[).*?(\])" = "`${1}$($Latest.Version)`$2"
+            "(\<dependency\s+?id=""nginx""\s+?version=""\[).*?(\])" = "`${1}$($Latest.nginxVersion)`$2"
 
 			"(\<copyright\>).*?(\</copyright\>)" = "`${1}$($Latest.Year) &#169; Nginx, Inc.`$2"
 			# "(\<version\>).*?(\</version\>)" = "`${1}$($Latest.NuspecVersion)`$2" # for testing purposes, leaves previous version
         }
 		".\README.md" = @{
-			"(?i)(migration from 1\.6\.2\.1 to ).*"        = "`${1}$($Latest.Version)"
+			"(?i)(migration from 1\.6\.2\.1 to ).*"        = "`${1}$($Latest.nginxVersion)"
 		}
     }
 }
@@ -28,10 +28,10 @@ function global:au_GetLatest {
 }
 
 function global:au_BeforeUpdate() {
-
+	$Latest.nginxVersion = $Latest.Version -replace "(\d+)\.(\d+)\.(\d+).*",'$1.$2.$3'
 }
 function global:au_AfterUpdate() {
-	$version = $Latest.version
+	$version = $Latest.nginxVersion
 	$versionRegex = $version.replace(".","\.")
 
 	choco install nginx --version=$version | out-null

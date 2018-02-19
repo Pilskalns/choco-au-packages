@@ -4,14 +4,14 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.12.2</version>
+    <version>1.12.2.0</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
     <title>nginx-service (Install)</title>
     <authors>Igor Sysoev</authors>
     <projectUrl>http://nginx.org/</projectUrl>
-    <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/icons/nginx-service/nginx-service.png</iconUrl>
+    <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/nginx-service/nginx-service.png</iconUrl>
     <copyright>2018 &#169; Nginx, Inc.</copyright>
     <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -80,4 +80,3 @@ See the [nginx.org](https://nginx.org) for more detailed documentation.
     <file src="tools\**" target="tools" />
   </files>
 </package>
-
