@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+	<!-- == PACKAGE SPECIFIC SECTION == -->
+    <id>nginx-service</id>
+    <version>1.12.2-beta2</version>
+    <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
+    <owners>Andzs Pilskalns</owners>
+	<!-- == SOFTWARE SPECIFIC SECTION == -->
+    <title>nginx-service (Install)</title>
+    <authors>Igor Sysoev</authors>
+    <projectUrl>http://nginx.org/</projectUrl>
+    <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/icons/nginx-service/nginx-service.png</iconUrl>
+    <copyright>2018 &#169; Nginx, Inc.</copyright>
+    <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://trac.nginx.org/nginx/browser</projectSourceUrl>
+    <docsUrl>https://nginx.org/en/docs/</docsUrl>
+    <bugTrackerUrl>https://trac.nginx.org/nginx/</bugTrackerUrl>
+    <tags>nginx service nssm</tags>
+    <summary>Awesome web server for Windows</summary>
+    <description><![CDATA[nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP proxy server, originally written by Igor Sysoev.
+This package provides an `nssm` Windows service wrapper for it which creates a standard Windows
+service named `nginx` to manage the server.
+
+#### N!B! Upgrading from nginx-service 1.6.2.1 and below it will have new default configuration location.
+
+It may be disappointing, but here's few reasons why:
+
+* Writing inside previous C:/ProgramData/nginx requires editor to be opened with Administrator privileges
+* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.12.2
+* 1.6.2.1 is a quite old and I believe most of users have already found another way for newer nginx. Those who dont, probably also wont bother updating to newer
+* `C:/tools/nginx` is on par with other web-related choco packages
+
+
+During installation `nginx-service` will create following directory structure:
+```
+C:/tools/nginx/
+├── conf
+│   ├── nginx.conf
+│   └── ...
+├── conf.d
+│   ├── default.conf
+│   └── d0n3.ws.conf.sample {Bonus file, read content}
+├── html
+│   └── index.html
+├── logs
+│   └── {Required}
+└── temp
+    └── {Required}
+```
+
+See the [nginx.org](https://nginx.org) for more detailed documentation.
+]]></description>
+	<releaseNotes><![CDATA[*) Bugfix: client SSL connections were immediately closed if deferred
+   accept and the "proxy_protocol" parameter of the "listen" directive
+   were used.
+
+*) Bugfix: client connections might be dropped during configuration
+   testing when using the "reuseport" parameter of the "listen"
+   directive on Linux.
+
+*) Bugfix: incorrect response length was returned on 32-bit platforms
+   when requesting more than 4 gigabytes with multiple ranges.
+
+*) Bugfix: switching to the next upstream server in the stream module
+   did not work when using the "ssl_preread" directive.
+
+*) Bugfix: when using HTTP/2 client request body might be corrupted.
+
+*) Bugfix: in handling of client addresses when using unix domain
+   sockets.]]></releaseNotes>
+    <dependencies>
+		<dependency id="nssm" version="2.24.0" />
+		<dependency id="nginx" version="[1.12.2]" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

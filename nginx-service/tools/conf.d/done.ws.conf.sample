@@ -1,0 +1,77 @@
+#
+#   This file is 100% optional, but thrown as a bonus sample
+#
+#   What it does?
+#      I have registred domain name d0n3.ws, where all queries
+#      to top domain or any subdomain are redirected to
+#      127.0.0.1 or simply your localhost
+#
+#      So, whenever you type in your browser http://d0n3.ws
+#      you will be redirected your localhost
+#
+#   What's benefit?
+#      It will give custom Fully Qualified Domain Name for local tests
+#
+#      Eample below is dynamic server configuration. I can have
+#      as many subdomains as I want and all of them routing
+#      to localhost. Then Nginx will server directory under HTML
+#      that matches your chosen subdomain
+#      
+#      for example
+#      api.d0n3.ws        --> c:/tools/nginx/html/api/
+#      video.d0n3.ws      --> c:/tools/nginx/html/video/
+#      example.d0n3.ws    --> c:/tools/nginx/html/example/
+#      wordpress.d0n3.ws  --> c:/tools/nginx/html/wordpress/
+#      and so on...
+#
+#      It will allow you to write clean HTML / JS / CSS code 
+#      that start search links from /, serve local API or whatever
+#      you might need
+#
+#   Is that safe?
+#	   Yes. Query DNS records for d0n3.ws yourself and see
+#      that's it does nothing else other than 127.0.0.1 redirect
+#      It's same as editing your local HOSTS file, but without
+#      that. And without need to sync between home, work and 
+#      your colleagues who need to have same dev enviroment
+#
+#   Isn't that slower than localhost?
+#      No! Your PC will  query DNS only once and will save in memory
+#      that {my_sub_domain}.d0n3.ws is located locahlost
+#      and use immediately that for any subsequent request
+#
+#   What if you stop renew domain?
+#      There are other "services" that does just that,
+#      like localhost.me, but it was too long to type with sub domain
+#      and I created shorter'n'easy typing d0n3.ws
+#
+#   Can I get Let's Encrypt certificate for this?
+#      No. This is not possible. All requests go to localhost,
+#      Where would validator check ownership, it's own localhost?
+#
+#   Can I remove this?
+#      Sure, it does nothing unless you remove .sample from filename
+#      Happy to help you!
+#
+
+server {
+	listen       80;
+	
+	server_name ~^(?<site_id>.+)\.d0n3\.ws$;
+	add_header Site $server_name;
+
+	root html/$site_id;
+	
+	
+
+	location / {
+		index  index.html index.htm;
+	}
+
+	# redirect server error pages to the static page /50x.html
+	#
+	error_page   500 502 503 504  /50x.html;
+	location = /50x.html {
+		root   html;
+	}
+}
