@@ -50,7 +50,7 @@ function global:au_AfterUpdate() {
 	$spec = gc "nginx-service.nuspec" -Raw -Encoding "UTF8"
 	$spec = $spec -replace "(\<releaseNotes\>)(?s:.*?)(\<\/releaseNotes\>)", "`${1}$changesText`$2"
 	$spec = $spec -replace "(?i)(migration from 1\.6\.2\.1 to ).*", "`${1}$($Latest.Version)"
-	$spec | out-file "nginx-service.nuspec" -Encoding "UTF8"
+	$spec.trim() | out-file "nginx-service.nuspec" -Encoding "UTF8"
 
 	# Include original license file
 	$license = gc $env:ChocolateyInstall"\lib\nginx\tools\nginx-$version\docs\LICENSE" -raw
