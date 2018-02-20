@@ -14,7 +14,7 @@ branches:
 environment:
   # Set au version to use or omit to use the latest. Specify branch name to use development version from Github
   au_version:
-  au_push: false
+  au_push: true
   # Force test: use 1 to test all, or N to split testing into N groups
   au_test_groups: 1
 
@@ -38,7 +38,7 @@ environment:
   gist_id: 1b0f0584554f6e98b14aca7f2fec2230
 
   # Force test: gist id for test results
-  gist_id_test:
+  gist_id_test: f82e6bd848aab70ae751750b147a75d9
 
   # Chocolatey API key - to push updated packages
   api_key:
