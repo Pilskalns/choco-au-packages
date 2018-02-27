@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.12.2</version>
+    <version>1.12.2.20180227</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -29,7 +29,7 @@ service named `nginx` to manage the server.
 It may be disappointing, but here's few reasons why:
 
 * Writing inside previous `C:/ProgramData/nginx` requires editor to be opened with Administrator privileges
-* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.12.2
+* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.12.2.20180227
 * 1.6.2.1 is a quite old and I believe most of users have already found another way for newer nginx. Those who dont, probably also wont bother updating to newer
 * `C:/tools/nginx` is on par with other web-related choco packages
 
@@ -80,4 +80,3 @@ See the [nginx.org](https://nginx.org) for more detailed documentation.
     <file src="tools\**" target="tools" />
   </files>
 </package>
-
