@@ -69,7 +69,7 @@ function global:au_AfterUpdate() {
 	$include = @"
     # PLACE YOUR CUSTOM {server}.conf FILES INSIDE
     # C:/tools/nginx/conf.d/
-    include ../conf.d/*.conf;
+    include ../conf.d/server*.conf;
 
 
 "@

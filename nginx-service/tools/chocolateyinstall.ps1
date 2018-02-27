@@ -50,11 +50,11 @@ sc delete nginx 2>&1 | Out-Null # Wishfull thinking
 
 nssm stop nginx 2>&1 | Out-Null
 nssm remove nginx confirm 2>&1 | Out-Null
-nssm install nginx "$nginxDir\nginx.exe" 2>&1 | Out-Null
+nssm install nginx "$($env:ChocolateyInstall)\bin\nginx.exe" 2>&1 | Out-Null
 nssm set nginx Description "Awsome HTTP web server, service managed by NSSM" 2>&1 | Out-Null
 nssm set nginx AppDirectory  "$installDir" 2>&1 | Out-Null
-nssm set nginx AppNoConsole 1 2>&1 | Out-Null # Mentioned on top off http://nssm.cc/download
 nssm set nginx AppParameters "-p """"$installDir""""" 2>&1 | Out-Null
+nssm set nginx AppNoConsole 1 2>&1 | Out-Null # Mentioned on top off http://nssm.cc/download
 nssm set nginx AppStopMethodSkip 7 2>&1 | Out-Null
 nssm start nginx 2>&1 | Out-Null
 $ErrorActionPreference = 'Stop'
