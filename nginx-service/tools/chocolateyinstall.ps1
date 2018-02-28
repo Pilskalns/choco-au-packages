@@ -74,7 +74,7 @@ if($migratedOldConfig){
 Write-Host @"
 Config file(s) location "$installDir\conf.d"
 
-Nginx now can be started and stopped as regular Windows service or trough NSSM command interface
+Nginx now can be started and stopped as regular Windows service or through NSSM command interface
 Type one of those commands in CMD or PowerShell for nginx-service control:
 
 "@  -ForegroundColor Green

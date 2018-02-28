@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.12.2.20180227</version>
+    <version>1.12.2</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -29,7 +29,7 @@ service named `nginx` to manage the server.
 It may be disappointing, but here's few reasons why:
 
 * Writing inside previous `C:/ProgramData/nginx` requires editor to be opened with Administrator privileges
-* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.12.2.20180227
+* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.12.2
 * 1.6.2.1 is a quite old and I believe most of users have already found another way for newer nginx. Those who dont, probably also wont bother updating to newer
 * `C:/tools/nginx` is on par with other web-related choco packages
 
@@ -41,8 +41,8 @@ C:/tools/nginx/
 │   ├── nginx.conf
 │   └── ...
 ├── conf.d
-│   ├── default.conf
-│   └── d0n3.ws.conf.sample {Bonus file, read content}
+│   ├── server.default.conf
+│   └── server.d0n3.ws.conf.sample {Bonus file, read content}
 ├── html
 │   └── index.html
 ├── logs
@@ -50,6 +50,11 @@ C:/tools/nginx/
 └── temp
     └── {Required}
 ```
+
+* Place your custom config files inside `conf.d`
+* Conf to be included must follow naming pattern `server*.conf` where `*` is a wildcard
+* Above allows config pattern where extra `.conf` files are included (and reused) manually from `server*.conf`, i.e. PHP location directive
+* It is safe to edit/rename/remove default config files. They will be restored during upgrade only if `conf.d` is empty
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>

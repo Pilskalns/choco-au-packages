@@ -21,8 +21,8 @@ C:/tools/nginx/
 │   ├── nginx.conf
 │   └── ...
 ├── conf.d
-│   ├── default.conf
-│   └── d0n3.ws.conf.sample {Bonus file, read content}
+│   ├── server.default.conf
+│   └── server.d0n3.ws.conf.sample {Bonus file, read content}
 ├── html
 │   └── index.html
 ├── logs
@@ -30,5 +30,10 @@ C:/tools/nginx/
 └── temp
     └── {Required}
 ```
+
+* Place your custom config files inside `conf.d`
+* Conf to be included must follow naming pattern `server*.conf` where `*` is a wildcard
+* Above allows config pattern where extra `.conf` files are included (and reused) manually from `server*.conf`, i.e. PHP location directive
+* It is safe to edit/rename/remove default config files. They will be restored during upgrade only if `conf.d` is empty
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
