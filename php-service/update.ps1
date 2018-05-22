@@ -23,7 +23,7 @@ function global:au_GetLatest {
 
 function global:au_BeforeUpdate() {
 	$Latest.phpVersion = $Latest.Version -replace "(\d+)\.(\d+)\.(\d+).*",'$1.$2.$3'
-	$Latest.phpInstallLocation = "$($env:ChocolateyToolsLocation)\php{0}" -f ($Latest.phpVersion -replace '\.').Substring(0,2)
+	
 }
 function global:au_AfterUpdate() {
 	$version = $Latest.phpVersion
@@ -38,7 +38,8 @@ function global:au_AfterUpdate() {
 	choco install php --version=$version --force | out-null
 	$ErrorActionPreference = $oldErrorActionPreference
 	
-	
+	$Latest.phpInstallLocation = "$($Env:ChocolateyToolsLocation)\php{0}" -f ($Latest.phpVersion -replace '\.').Substring(0,2)
+
 	# Scrape for changelog text
 	$changesText = "Changes not found"
 	$changes = Get-Content "$($Latest.phpInstallLocation)\news.txt" -raw
