@@ -23,26 +23,24 @@ function global:au_GetLatest {
 
 function global:au_BeforeUpdate() {
 	$Latest.phpVersion = $Latest.Version -replace "(\d+)\.(\d+)\.(\d+).*",'$1.$2.$3'
-	
+	$Latest.phpInstallLocation = "$($Env:ChocolateyToolsLocation)\php{0}" -f ($Latest.phpVersion -replace '\.').Substring(0,2)
 }
 function global:au_AfterUpdate() {
 	$version = $Latest.phpVersion
 	$versionRegex = $version.replace(".","\.")
+	$installDir = $Latest.phpInstallLocation
 	
 	write-host ""
 	write-host "Trying to install PHP $version" -ForegroundColor Green
 	write-host ""
 	
-	$oldErrorActionPreference = $ErrorActionPreference
-	$ErrorActionPreference = 'SilentlyContinue'
-	choco install php --version=$version --force | out-null
-	$ErrorActionPreference = $oldErrorActionPreference
+	choco install php --version=$version --force --params '"""/InstallDir:'$installDir'"""' | out-null
+
 	
-	$Latest.phpInstallLocation = "$($Env:ChocolateyToolsLocation)\php{0}" -f ($Latest.phpVersion -replace '\.').Substring(0,2)
 
 	# Scrape for changelog text
 	$changesText = "Changes not found"
-	$changes = Get-Content "$($Latest.phpInstallLocation)\news.txt" -raw
+	$changes = Get-Content "$($installDir)\news.txt" -raw
 	# Write-Host $changes
 	if($changes -match '(?smi)(,\s+PHP\s+'+$versionRegex+'.*?$)(?smi)(.*?)\d{1,2}\s\w{2,8}\s\d{4},\sPHP\s\d+\.\d+\.\d+'){
 		$changesText = $matches[2].trim()
@@ -55,7 +53,7 @@ function global:au_AfterUpdate() {
 	$spec.trim() | out-file "php-service.nuspec" -Encoding "UTF8"
 	
 	# Include original license file
-	$license = Get-Content "$($Latest.phpInstallLocation)\license.txt" -raw
+	$license = Get-Content "$($installDir)\license.txt" -raw
 	$license | out-file "tools\LICENSE.txt" -Encoding "UTF8"
 	# exit
 
