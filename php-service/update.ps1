@@ -26,11 +26,18 @@ function global:au_BeforeUpdate() {
 	$Latest.phpInstallLocation = "$($env:ChocolateyToolsLocation)\php{0}" -f ($Latest.phpVersion -replace '\.').Substring(0,2)
 }
 function global:au_AfterUpdate() {
-	# write-host $Latest
 	$version = $Latest.phpVersion
 	$versionRegex = $version.replace(".","\.")
 	
-	choco install php --version=$version | out-null
+	write-host ""
+	write-host "Trying to install PHP $version" -ForegroundColor Green
+	write-host ""
+	
+	$oldErrorActionPreference = $ErrorActionPreference
+	$ErrorActionPreference = 'SilentlyContinue'
+	choco install php --version=$version --force | out-null
+	$ErrorActionPreference = $oldErrorActionPreference
+	
 	
 	# Scrape for changelog text
 	$changesText = "Changes not found"
