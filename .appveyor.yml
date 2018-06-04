@@ -14,7 +14,7 @@ branches:
 environment:
   # Set au version to use or omit to use the latest. Specify branch name to use development version from Github
   au_version:
-  au_push: false
+  au_push: true
   # Force test: use 1 to test all, or N to split testing into N groups
   au_test_groups: 1
 
@@ -113,5 +113,5 @@ notifications:
   on_build_failure: true
   on_build_status_changed: true
 
-on_finish:
-- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+# on_finish:
+# - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
