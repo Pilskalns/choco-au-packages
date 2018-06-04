@@ -34,12 +34,12 @@ function global:au_AfterUpdate() {
 	write-host "Trying to install PHP $version" -ForegroundColor Green
 	write-host ""
 	
-	choco install php --version=$version --force --params '"""/InstallDir:'$installDir'"""' | out-null
+	&choco install php --version=$version --force --params "'/InstallDir:$installDir'" | out-null
 
 	
 
 	# Scrape for changelog text
-	$changesText = "Changes not found"
+	$changesText = ""
 	$changes = Get-Content "$($installDir)\news.txt" -raw
 	# Write-Host $changes
 	if($changes -match '(?smi)(,\s+PHP\s+'+$versionRegex+'.*?$)(?smi)(.*?)\d{1,2}\s\w{2,8}\s\d{4},\sPHP\s\d+\.\d+\.\d+'){
@@ -55,9 +55,19 @@ function global:au_AfterUpdate() {
 	# Include original license file
 	$license = Get-Content "$($installDir)\license.txt" -raw
 	$license | out-file "tools\LICENSE.txt" -Encoding "UTF8"
-	# exit
 
+
+	# # Remove comments from install-scripts
+	# $minFiles = @(
+	# 	'tools\chocolateyinstall.ps1'
+	# 	'tools\chocolateyuninstall.ps1'
+	# )
+	# $minFiles | % {
+	# 	$file = $_
+	# 	Get-Content $file | ? {$_ -notmatch "^\s*#"} | % {$_ -replace '(^.*?)\s*?[^``]#.*','$1'} | Out-File $file+".~" -en utf8; mv -fo $file+".~" $file
+	# }
 }
+
 try {
 	update -ChecksumFor none
 } catch {
