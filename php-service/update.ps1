@@ -23,7 +23,7 @@ function global:au_GetLatest {
 
 function global:au_BeforeUpdate() {
 	$Latest.phpVersion = $Latest.Version -replace "(\d+)\.(\d+)\.(\d+).*",'$1.$2.$3'
-	$Latest.phpInstallLocation = "$($Env:ChocolateyToolsLocation)\php{0}" -f ($Latest.phpVersion -replace '\.').Substring(0,2)
+	$Latest.phpInstallLocation = "C:\tools\php{0}" -f ($Latest.phpVersion -replace '\.').Substring(0,2)
 }
 function global:au_AfterUpdate() {
 	$version = $Latest.phpVersion
