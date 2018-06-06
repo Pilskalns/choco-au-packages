@@ -52,9 +52,9 @@ function global:au_AfterUpdate() {
 	$spec = $spec -replace "(\<releaseNotes\>)(?s:.*?)(\<\/releaseNotes\>)", "`${1}$changesText`$2"
 	$spec.trim() | out-file "php-service.nuspec" -Encoding "UTF8"
 	
-	# Include original license file
-	$license = Get-Content "$($installDir)\license.txt" -raw
-	$license | out-file "tools\LICENSE.txt" -Encoding "UTF8"
+	# # Include original license file
+	# $license = Get-Content "$($installDir)\license.txt" -raw
+	# $license | out-file "tools\LICENSE.txt" -Encoding "UTF8"
 
 
 	# # Remove comments from install-scripts
