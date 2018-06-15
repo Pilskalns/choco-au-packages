@@ -8,7 +8,7 @@
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
-    <title>php-service (Install)</title>
+    <title>PHP Service</title>
     <authors>PHP Authors</authors>
     <projectUrl>http://www.php.net/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/php-service/php-service.png</iconUrl>
@@ -18,12 +18,14 @@
     <projectSourceUrl>https://git.php.net/</projectSourceUrl>
     <docsUrl>http://php.net/manual/en/</docsUrl>
     <bugTrackerUrl>https://bugs.php.net/</bugTrackerUrl>
-    <tags>php service nssm admin</tags>
+    <tags>php web service nssm admin</tags>
     <summary>PHP service for Windows</summary>
-    <description><![CDATA[PHP is a popular general-purpose scripting language that is especially suited to web development.
-Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
+    <description><![CDATA[This package will install [PHP](https://chocolatey.org/packages/php) as a [NSSM](https://chocolatey.org/packages/NSSM) service. It's installed trough dependencies, so default values for PHP and NSSM packages will be used.
 
-This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
+This package plays well together with [nginx service](https://chocolatey.org/packages/nginx-service) package.
+
+PHP is a popular general-purpose scripting language that is especially suited to web development.
+Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
   . Fixed bug #75722 (Convert valgrind detection to configure option).
