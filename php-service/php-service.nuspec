@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.2.7</version>
+    <version>7.2.8</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,29 +26,69 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #76337 (segfault when opcache enabled + extension use
-    zend_register_class_alias). (xKhorasan)
+  . Fixed bug #76534 (PHP hangs on 'illegal string offset on string references
+    with an error handler). (Laruence)
+  . Fixed bug #76520 (Object creation leaks memory when executed over HTTP).
+    (Nikita)
+  . Fixed bug #76502 (Chain of mixed exceptions and errors does not serialize
+    properly). (Nikita)
 
-- CLI Server:
-  . Fixed bug #76333 (PHP built-in server does not find files if root path
-    contains special characters). (Anatol)
+- Date:
+  . Fixed bug #76462 (Undefined property: DateInterval::$f). (Anatol)
 
-- OpenSSL:
-  . Fixed bug #76296 (openssl_pkey_get_public does not respect open_basedir).
-    (Erik Lax, Jakub Zelenka)
-  . Fixed bug #76174 (openssl extension fails to build with LibreSSL 2.7).
-    (Jakub Zelenka)
+- EXIF:
+  . Fixed bug #76409 (heap use after free in _php_stream_free). (cmb)
+  . Fixed bug #76423 (Int Overflow lead to Heap OverFlow in
+    exif_thumbnail_extract of exif.c). (Stas)
+  . Fixed bug #76557 (heap-buffer-overflow (READ of size 48) while reading exif
+    data). (Stas)
 
-- SPL:
-  . Fixed bug #76367 (NoRewindIterator segfault 11). (Laruence)
+- FPM:
+  . Fixed bug #73342 (Vulnerability in php-fpm by changing stdin to
+    non-blocking). (Nikita)
+
+- GMP:
+  . Fixed bug #74670 (Integer Underflow when unserializing GMP and possible
+    other classes). (Nikita)
+
+- intl:
+  . Fixed bug #76556 (get_debug_info handler for BreakIterator shows wrong
+    type). (cmb)
+
+- mbstring:
+  . Fixed bug #76532 (Integer overflow and excessive memory usage
+    in mb_strimwidth). (MarcusSchwarz)
+
+- Opcache:
+  . Fixed bug #76477 (Opcache causes empty return value).
+    (Nikita, Laruence)
+
+- PGSQL:
+  . Fixed bug #76548 (pg_fetch_result did not fetch the next row). (Anatol)
+
+- phpdbg:
+  . Fix arginfo wrt. optional/required parameters. (cmb)
+
+- Reflection:
+  . Fixed bug #76536 (PHP crashes with core dump when throwing exception in
+    error handler). (Laruence)
+  . Fixed bug #75231 (ReflectionProperty#getValue() incorrectly works with
+    inherited classes). (Nikita)
 
 - Standard:
-  . Fixed bug #76410 (SIGV in zend_mm_alloc_small). (Laruence)
-  . Fixed bug #76335 ("link(): Bad file descriptor" with non-ASCII path).
-    (Anatol)]]></releaseNotes>
+  . Fixed bug #76505 (array_merge_recursive() is duplicating sub-array keys).
+    (Laruence)
+  . Fixed bug #71848 (getimagesize with $imageinfo returns false). (cmb)
+
+- Win32:
+  . Fixed bug #76459 (windows linkinfo lacks openbasedir check). (Anatol)
+
+- ZIP:
+  . Fixed bug #76461 (OPSYS_Z_CPM defined instead of OPSYS_CPM).
+    (Dennis Birkholz, Remi)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.2.7]" />
+		<dependency id="php" version="[7.2.8]" />
     </dependencies>
   </metadata>
   <files>
