@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.2.8</version>
+    <version>7.2.9</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,70 +25,38 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #76534 (PHP hangs on 'illegal string offset on string references
-    with an error handler). (Laruence)
-  . Fixed bug #76520 (Object creation leaks memory when executed over HTTP).
-    (Nikita)
-  . Fixed bug #76502 (Chain of mixed exceptions and errors does not serialize
-    properly). (Nikita)
+	  <releaseNotes><![CDATA[- Calendar:
+  . Fixed bug #52974 (jewish.c: compile error under Windows with GBK charset).
+    (cmb)
 
-- Date:
-  . Fixed bug #76462 (Undefined property: DateInterval::$f). (Anatol)
+- Filter:
+  . Fixed bug #76366 (References in sub-array for filtering breaks the filter).
+    (ZiHang Gao)
 
-- EXIF:
-  . Fixed bug #76409 (heap use after free in _php_stream_free). (cmb)
-  . Fixed bug #76423 (Int Overflow lead to Heap OverFlow in
-    exif_thumbnail_extract of exif.c). (Stas)
-  . Fixed bug #76557 (heap-buffer-overflow (READ of size 48) while reading exif
-    data). (Stas)
+- PDO_Firebird:
+  . Fixed bug #76488 (Memory leak when fetching a BLOB field). (Simonov Denis)
 
-- FPM:
-  . Fixed bug #73342 (Vulnerability in php-fpm by changing stdin to
-    non-blocking). (Nikita)
+- PDO_PgSQL:
+  . Fixed bug #75402 (Possible Memory Leak using PDO::CURSOR_SCROLL option).
+    (Anatol)
 
-- GMP:
-  . Fixed bug #74670 (Integer Underflow when unserializing GMP and possible
-    other classes). (Nikita)
-
-- intl:
-  . Fixed bug #76556 (get_debug_info handler for BreakIterator shows wrong
-    type). (cmb)
-
-- mbstring:
-  . Fixed bug #76532 (Integer overflow and excessive memory usage
-    in mb_strimwidth). (MarcusSchwarz)
-
-- Opcache:
-  . Fixed bug #76477 (Opcache causes empty return value).
-    (Nikita, Laruence)
-
-- PGSQL:
-  . Fixed bug #76548 (pg_fetch_result did not fetch the next row). (Anatol)
-
-- phpdbg:
-  . Fix arginfo wrt. optional/required parameters. (cmb)
-
-- Reflection:
-  . Fixed bug #76536 (PHP crashes with core dump when throwing exception in
-    error handler). (Laruence)
-  . Fixed bug #75231 (ReflectionProperty#getValue() incorrectly works with
-    inherited classes). (Nikita)
+- SQLite3:
+  . Fixed #76665 (SQLite3Stmt::bindValue() with SQLITE3_FLOAT doesn't juggle).
+    (cmb)
 
 - Standard:
-  . Fixed bug #76505 (array_merge_recursive() is duplicating sub-array keys).
-    (Laruence)
-  . Fixed bug #71848 (getimagesize with $imageinfo returns false). (cmb)
+  . Fixed bug #73817 (Incorrect entries in get_html_translation_table). (cmb)
+  . Fixed bug #68553 (array_column: null values in $index_key become incrementing
+    keys in result). (Laruence)
+  . Fixed bug #76643 (Segmentation fault when using `output_add_rewrite_var`).
+    (cmb)
 
-- Win32:
-  . Fixed bug #76459 (windows linkinfo lacks openbasedir check). (Anatol)
-
-- ZIP:
-  . Fixed bug #76461 (OPSYS_Z_CPM defined instead of OPSYS_CPM).
-    (Dennis Birkholz, Remi)]]></releaseNotes>
+- Zip:
+  . Fixed bug #76524 (ZipArchive memory leak (OVERWRITE flag and empty archive)).
+    (Timur Ibragimov)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.2.8]" />
+		<dependency id="php" version="[7.2.9]" />
     </dependencies>
   </metadata>
   <files>
