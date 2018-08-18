@@ -23,7 +23,7 @@
     <description><![CDATA[PHP is a popular general-purpose scripting language that is especially suited to web development.
 Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
 
-This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
+This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with its default values. It's installed through dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Calendar:
   . Fixed bug #52974 (jewish.c: compile error under Windows with GBK charset).
