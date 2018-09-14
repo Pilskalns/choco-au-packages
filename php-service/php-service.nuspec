@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.2.9</version>
+    <version>7.2.10</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -23,40 +23,72 @@
     <description><![CDATA[PHP is a popular general-purpose scripting language that is especially suited to web development.
 Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
 
-This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with its default values. It's installed through dependencies and those can't be passed with extra arguments.
+This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Calendar:
-  . Fixed bug #52974 (jewish.c: compile error under Windows with GBK charset).
+	  <releaseNotes><![CDATA[- Core:
+  . Fixed bug #76754 (parent private constant in extends class memory leak).
+    (Laruence)
+  . Fixed bug #72443 (Generate enabled extension). (petk)
+  . Fixed bug #75797 (Memory leak when using class_alias() in non-debug mode).
+    (Massimiliano Braglia)
+
+- Apache2:
+  . Fixed bug #76582 (Apache bucket brigade sometimes becomes invalid). (stas)
+
+- Bz2:
+  . Fixed arginfo for bzcompress. (Tyson Andre)
+
+- gettext:
+  . Fixed bug #76517 (incorrect restoring of LDFLAGS). (sji)
+
+- iconv:
+  . Fixed bug #68180 (iconv_mime_decode can return extra characters in a 
+    header). (cmb)
+  . Fixed bug #63839 (iconv_mime_decode_headers function is skipping headers).
     (cmb)
+  . Fixed bug #60494 (iconv_mime_decode does ignore special characters). (cmb)
+  . Fixed bug #55146 (iconv_mime_decode_headers() skips some headers). (cmb)
 
-- Filter:
-  . Fixed bug #76366 (References in sub-array for filtering breaks the filter).
-    (ZiHang Gao)
+- intl:
+  . Fixed bug #74484 (MessageFormatter::formatMessage memory corruption with
+    11+ named placeholders). (Anatol)
 
-- PDO_Firebird:
-  . Fixed bug #76488 (Memory leak when fetching a BLOB field). (Simonov Denis)
+- libxml:
+  . Fixed bug #76777 ("public id" parameter of libxml_set_external_entity_loader
+    callback undefined). (Ville HukkamÃ¤ki)
 
-- PDO_PgSQL:
-  . Fixed bug #75402 (Possible Memory Leak using PDO::CURSOR_SCROLL option).
-    (Anatol)
+- mbstring:
+  . Fixed bug #76704 (mb_detect_order return value varies based on argument
+    type). (cmb)
 
-- SQLite3:
-  . Fixed #76665 (SQLite3Stmt::bindValue() with SQLITE3_FLOAT doesn't juggle).
-    (cmb)
+- Opcache:
+  . Fixed bug #76747 (Opcache treats path containing "test.pharma.tld" as a phar
+    file). (Laruence)
+
+- OpenSSL:
+  . Fixed bug #76705 (unusable ssl => peer_fingerprint in
+    stream_context_create()). (Jakub Zelenka)
+
+- phpdbg:
+  . Fixed bug #76595 (phpdbg man page contains outdated information).
+    (Kevin Abel)
+
+- SPL:
+  . Fixed bug #68825 (Exception in DirectoryIterator::getLinkTarget()). (cmb)
+  . Fixed bug #68175 (RegexIterator pregFlags are NULL instead of 0). (Tim
+    Siebels)
 
 - Standard:
-  . Fixed bug #73817 (Incorrect entries in get_html_translation_table). (cmb)
-  . Fixed bug #68553 (array_column: null values in $index_key become incrementing
-    keys in result). (Laruence)
-  . Fixed bug #76643 (Segmentation fault when using `output_add_rewrite_var`).
+  . Fixed bug #76778 (array_reduce leaks memory if callback throws exception).
     (cmb)
 
-- Zip:
-  . Fixed bug #76524 (ZipArchive memory leak (OVERWRITE flag and empty archive)).
-    (Timur Ibragimov)]]></releaseNotes>
+- zlib:
+  . Fixed bug #65988 (Zlib version check fails when an include/zlib/ style dir
+    is passed to the --with-zlib configure option). (Jay Bonci)
+  . Fixed bug #76709 (Minimal required zlib library is 1.2.0.4). (petk)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.2.9]" />
+		<dependency id="php" version="[7.2.10]" />
     </dependencies>
   </metadata>
   <files>
