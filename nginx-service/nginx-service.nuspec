@@ -41,8 +41,7 @@ C:/tools/nginx/
 │   ├── nginx.conf
 │   └── ...
 ├── conf.d
-│   ├── server.default.conf
-│   └── server.d0n3.ws.conf.sample {Bonus file, read content}
+│   └── server.default.conf
 ├── html
 │   └── index.html
 ├── logs
