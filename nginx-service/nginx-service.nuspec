@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.12.2</version>
+    <version>1.14.1</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -29,7 +29,7 @@ service named `nginx` to manage the server.
 It may be disappointing, but here's few reasons why:
 
 * Writing inside previous `C:/ProgramData/nginx` requires editor to be opened with Administrator privileges
-* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.12.2
+* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.14.1
 * 1.6.2.1 is a quite old and I believe most of users have already found another way for newer nginx. Those who dont, probably also wont bother updating to newer
 * `C:/tools/nginx` is on par with other web-related choco packages
 
@@ -58,27 +58,18 @@ C:/tools/nginx/
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Bugfix: client SSL connections were immediately closed if deferred
-   accept and the "proxy_protocol" parameter of the "listen" directive
-   were used.
+	<releaseNotes><![CDATA[*) Security: when using HTTP/2 a client might cause excessive memory
+   consumption (CVE-2018-16843) and CPU usage (CVE-2018-16844).
 
-*) Bugfix: client connections might be dropped during configuration
-   testing when using the "reuseport" parameter of the "listen"
-   directive on Linux.
+*) Security: processing of a specially crafted mp4 file with the
+   ngx_http_mp4_module might result in worker process memory disclosure
+   (CVE-2018-16845).
 
-*) Bugfix: incorrect response length was returned on 32-bit platforms
-   when requesting more than 4 gigabytes with multiple ranges.
-
-*) Bugfix: switching to the next upstream server in the stream module
-   did not work when using the "ssl_preread" directive.
-
-*) Bugfix: when using HTTP/2 client request body might be corrupted.
-
-*) Bugfix: in handling of client addresses when using unix domain
-   sockets.]]></releaseNotes>
+*) Bugfix: working with gRPC backends might result in excessive memory
+   consumption.]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="nginx" version="[1.12.2]" />
+		<dependency id="nginx" version="[1.14.1]" />
     </dependencies>
   </metadata>
   <files>
