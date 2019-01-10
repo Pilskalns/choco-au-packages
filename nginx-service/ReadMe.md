@@ -9,7 +9,7 @@ service named `nginx` to manage the server.
 It may be disappointing, but here's few reasons why:
 
 * Writing inside previous `C:/ProgramData/nginx` requires editor to be opened with Administrator privileges
-* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.14.1
+* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.15.8
 * 1.6.2.1 is a quite old and I believe most of users have already found another way for newer nginx. Those who dont, probably also wont bother updating to newer
 * `C:/tools/nginx` is on par with other web-related choco packages
 

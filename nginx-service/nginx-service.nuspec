@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.14.1</version>
+    <version>1.15.8</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -12,7 +12,7 @@
     <authors>Igor Sysoev</authors>
     <projectUrl>http://nginx.org/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/nginx-service/nginx-service.png</iconUrl>
-    <copyright>2018 &#169; Nginx, Inc.</copyright>
+    <copyright>2019 &#169; Nginx, Inc.</copyright>
     <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://trac.nginx.org/nginx/browser</projectSourceUrl>
@@ -29,7 +29,7 @@ service named `nginx` to manage the server.
 It may be disappointing, but here's few reasons why:
 
 * Writing inside previous `C:/ProgramData/nginx` requires editor to be opened with Administrator privileges
-* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.14.1
+* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.15.8
 * 1.6.2.1 is a quite old and I believe most of users have already found another way for newer nginx. Those who dont, probably also wont bother updating to newer
 * `C:/tools/nginx` is on par with other web-related choco packages
 
@@ -41,7 +41,8 @@ C:/tools/nginx/
 │   ├── nginx.conf
 │   └── ...
 ├── conf.d
-│   └── server.default.conf
+│   ├── server.default.conf
+│   └── server.d0n3.ws.conf.sample {Bonus file, read content}
 ├── html
 │   └── index.html
 ├── logs
@@ -57,18 +58,10 @@ C:/tools/nginx/
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: when using HTTP/2 a client might cause excessive memory
-   consumption (CVE-2018-16843) and CPU usage (CVE-2018-16844).
-
-*) Security: processing of a specially crafted mp4 file with the
-   ngx_http_mp4_module might result in worker process memory disclosure
-   (CVE-2018-16845).
-
-*) Bugfix: working with gRPC backends might result in excessive memory
-   consumption.]]></releaseNotes>
+	<releaseNotes>Changes not found</releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="nginx" version="[1.14.1]" />
+		<dependency id="nginx" version="[1.15.8]" />
     </dependencies>
   </metadata>
   <files>
