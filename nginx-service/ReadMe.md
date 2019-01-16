@@ -4,25 +4,21 @@ nginx [engine x] is an HTTP and reverse proxy server, a mail proxy server, and a
 This package provides an `nssm` Windows service wrapper for it which creates a standard Windows
 service named `nginx` to manage the server.
 
-#### N!B! Upgrading from nginx-service 1.6.2.1 and below it will have new default configuration location.
+#### N!B! This repository lists both nginx versions - stable and mainline:
 
-It may be disappointing, but here's few reasons why:
-
-* Writing inside previous `C:/ProgramData/nginx` requires editor to be opened with Administrator privileges
-* Changing to new directory allow for optimistic migration from 1.6.2.1 to 1.15.8
-* 1.6.2.1 is a quite old and I believe most of users have already found another way for newer nginx. Those who dont, probably also wont bother updating to newer
-* `C:/tools/nginx` is on par with other web-related choco packages
-
+* **Stable** and **mainline** only differ by version numbers. On command `choco install nginx-service` the stable will be installed. To access mainline version, you must use pre-release `--pre` switch or specify exact version number, which has `-mainline` appended to it.
+* **Mainline** version might contain more edge features, whereas **stable** will be more prone to bugs. Both versions should receive critical security fixes. If you use this package for development and need to access latest features, go for mainline. If deployment is for longterm and unattended stability - choose stable.
+* More info on [different nginx versions](https://www.nginx.com/blog/nginx-1-6-1-7-released/)
 
 During installation `nginx-service` will create following directory structure:
 ```
 C:/tools/nginx/
 ├── conf
-│   ├── nginx.conf
+│   ├── nginx.original.conf {conf file shipped with official .zip}
+│   ├── nginx.conf          {tailored version of above file}
 │   └── ...
 ├── conf.d
-│   ├── server.default.conf
-│   └── server.d0n3.ws.conf.sample {Bonus file, read content}
+│   └── server.default.conf
 ├── html
 │   └── index.html
 ├── logs
@@ -35,5 +31,8 @@ C:/tools/nginx/
 * Conf to be included must follow naming pattern `server*.conf` where `*` is a wildcard
 * Above allows config pattern where extra `.conf` files are included (and reused) manually from `server*.conf`, i.e. PHP location directive
 * It is safe to edit/rename/remove default config files. They will be restored during upgrade only if `conf.d` is empty
+
+Afterwards, you can start and stop the service with following commands: `nssm start nginx-service` and `nssm stop nginx-service`
+On default, the service will autostart with Windows. To disable this use Services GUI console.
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.

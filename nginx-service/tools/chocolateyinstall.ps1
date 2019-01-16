@@ -1,8 +1,8 @@
 
 $ErrorActionPreference = 'Stop'; # stop on all errors
-$version    = $env:chocolateyPackageVersion -replace "-beta.*",""
+$version    = $env:chocolateyPackageVersion -replace "-mainline.*",""
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$nginxDir   = "$($env:ChocolateyInstall)\lib\nginx\tools\nginx-$($version)"
+$nginxDir   = "$($env:ChocolateyInstall)\lib\nginx-service\bin"
 $installDir = "C:\tools\nginx"
 
 $legacyDir = "C:\ProgramData\nginx\conf.d"
@@ -25,13 +25,14 @@ if ( (Test-Path "$legacyDir\") -eq $True -And (Test-Path "$legacyDir\nginx-servi
 <#
 	Copy fresh config files from nginx conf
 #>
-Copy-Item "$nginxDir\*" $installDir -Recurse -Force -Exclude @("*.exe","html")
+Copy-Item "$nginxDir\*" $installDir -Recurse -Force -Exclude @("*.exe","*.ignore","html")
 
 if(-not (Test-Path "$installDir\html")){
 	New-Item -ItemType Directory -Force -Path "$installDir\html\" | Out-Null
 	Copy-Item "$nginxDir\html\*" "$installDir\html" -Recurse -Force
 }
 
+Copy-Item "$installDir\conf\nginx.conf" "$installDir\conf\nginx.original.conf" -Force
 Copy-Item "$toolsDir\conf\nginx.conf" "$installDir\conf" -Force
 
 
@@ -45,18 +46,20 @@ if($confdInfo.count -eq 0){
 #>
 $ErrorActionPreference = 'SilentlyContinue'
 
-net stop nginx 2>&1 | Out-Null # Wishfull thinking
-sc delete nginx 2>&1 | Out-Null # Wishfull thinking
+cmd /c "net stop nginx 2>&1" | Out-Null #remove old version
+cmd /c "sc delete nginx 2>&1" | Out-Null #remove old version
+cmd /c "net stop nginx-service 2>&1" | Out-Null
+cmd /c "sc delete nginx-service 2>&1" | Out-Null
 
-nssm stop nginx 2>&1 | Out-Null
-nssm remove nginx confirm 2>&1 | Out-Null
-nssm install nginx "$($env:ChocolateyInstall)\bin\nginx.exe" 2>&1 | Out-Null
-nssm set nginx Description "Awsome HTTP web server, service managed by NSSM" 2>&1 | Out-Null
-nssm set nginx AppDirectory  "$installDir" 2>&1 | Out-Null
-nssm set nginx AppParameters "-p """"$installDir""""" 2>&1 | Out-Null
-nssm set nginx AppNoConsole 1 2>&1 | Out-Null # Mentioned on top off http://nssm.cc/download
-nssm set nginx AppStopMethodSkip 7 2>&1 | Out-Null
-nssm start nginx 2>&1 | Out-Null
+Install-BinFile -Name "nginx-service" -Path "$($env:ChocolateyInstall)\lib\nginx-service\bin\nginx.exe"
+
+nssm install nginx-service "$($env:ChocolateyInstall)\bin\nginx-service.exe" 2>&1 | Out-Null
+nssm set nginx-service Description "Awsome HTTP web server, service managed by NSSM" 2>&1 | Out-Null
+nssm set nginx-service AppDirectory  "$installDir" 2>&1 | Out-Null
+nssm set nginx-service AppParameters "-p """"$installDir""""" 2>&1 | Out-Null
+nssm set nginx-service AppNoConsole 1 2>&1 | Out-Null # Mentioned on top off http://nssm.cc/download
+nssm set nginx-service AppStopMethodSkip 7 2>&1 | Out-Null
+nssm start nginx-service 2>&1 | Out-Null
 $ErrorActionPreference = 'Stop'
 
 <#
@@ -79,18 +82,18 @@ Type one of those commands in CMD or PowerShell for nginx-service control:
 
 "@  -ForegroundColor Green
 Write-Host "To start service:" -ForegroundColor Green
-Write-Host "    net start nginx" -ForegroundColor Yellow
+Write-Host "    net start nginx-service" -ForegroundColor Yellow
 Write-Host "    or" -ForegroundColor Green
-Write-Host "    nssm start nginx" -ForegroundColor Yellow
+Write-Host "    nssm start nginx-service" -ForegroundColor Yellow
 
 Write-Host "To stop service:" -ForegroundColor Green
-Write-Host "    net stop nginx" -ForegroundColor Yellow
+Write-Host "    net stop nginx-service" -ForegroundColor Yellow
 Write-Host "    or" -ForegroundColor Green
-Write-Host "    nssm stop nginx" -ForegroundColor Yellow
+Write-Host "    nssm stop nginx-service" -ForegroundColor Yellow
 
 Write-Host "To restart service do both:" -ForegroundColor Green
-Write-Host "    net stop nginx" -ForegroundColor Yellow
-Write-Host "    net start nginx" -ForegroundColor Yellow
+Write-Host "    net stop nginx-service" -ForegroundColor Yellow
+Write-Host "    net start nginx-service" -ForegroundColor Yellow
 Write-Host "    or" -ForegroundColor Green
-Write-Host "    nssm stop nginx" -ForegroundColor Yellow
-Write-Host "    nssm start nginx" -ForegroundColor Yellow
+Write-Host "    nssm stop nginx-service" -ForegroundColor Yellow
+Write-Host "    nssm start nginx-service" -ForegroundColor Yellow
