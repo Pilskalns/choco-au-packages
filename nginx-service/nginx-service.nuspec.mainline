@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.15.7-mainline</version>
+    <version>1.15.8-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
