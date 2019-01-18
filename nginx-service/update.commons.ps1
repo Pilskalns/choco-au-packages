@@ -16,10 +16,16 @@ function global:au_GetLatest {
 }
 function global:au_SearchReplace {
     @{
-         "nginx-service.nuspec" = @{
-             "(\<copyright\>).*?(\</copyright\>)" = "`${1}$($Latest.Year) &#169; Nginx, Inc.`$2"
+		"nginx-service.nuspec" = @{
+			"(\<copyright\>).*?(\</copyright\>)" = "`${1}$($Latest.Year) &#169; Nginx, Inc.`$2"
              # "(\<version\>).*?(\</version\>)" = "`${1}$($Latest.NuspecVersion)`$2" # for testing purposes, leaves previous version
-         }
+		}
+		"tools\verification.ps1" = @{
+			"(nginx-).*?(\.zip)" = "`${1}$($Latest.nginxVersion)`${2}"
+		}
+		"tools\verification.txt" = @{
+			"(nginx-).*?(\.zip)" = "`${1}$($Latest.nginxVersion)`${2}"
+		}
      }
 }
 
@@ -33,8 +39,9 @@ function global:au_AfterUpdate() {
 	(Test-Path "tmp\nginx-$version\") -And (Get-Childitem "tmp\nginx-$version\*" -Recurse | Remove-Item -Recurse -Force)
 
 	(New-Object System.Net.WebClient).DownloadFile($Latest.url, "$pwd\tmp\nginx.zip")
+
 	7z.exe x tmp\nginx.zip -otmp -aoa -r
-	Copy-Item "tmp\nginx-$version\*" "bin\" -Recurse -Force
+	Copy-Item "tmp\nginx.zip" "bin\nginx.zip" -Force
 	"taking care of race condition myself" | Out-File "bin\nginx.exe.ignore"
 	
 	# Scrape for changelog text

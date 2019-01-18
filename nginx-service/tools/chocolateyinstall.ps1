@@ -1,6 +1,6 @@
 
 $ErrorActionPreference = 'Stop'; # stop on all errors
-$version    = $env:chocolateyPackageVersion -replace "-mainline.*",""
+$version    = $env:chocolateyPackageVersion -replace "(\d+)\.(\d+)\.(\d+).*",'$1.$2.$3'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $nginxDir   = "$($env:ChocolateyInstall)\lib\nginx-service\bin"
 $installDir = "C:\tools\nginx"
@@ -21,6 +21,13 @@ if ( (Test-Path "$legacyDir\") -eq $True -And (Test-Path "$legacyDir\nginx-servi
 	Copy-Item "C:\ProgramData\nginx\conf.d\*" "$installDir\conf.d\" -Recurse -Force -include "*.conf"
 	$migratedOldConfig = $true
 }
+
+<#
+	Unpack ZIP file
+#>
+Get-ChocolateyUnzip -FileFullPath "$nginxDir\nginx.zip" -Destination "$nginxDir" -Force
+Move-Item "$nginxDir\nginx-$version\*" "$nginxDir" -Force
+Remove-Item "$nginxDir\nginx-$version" -Force -Recurse
 
 <#
 	Copy fresh config files from nginx conf
