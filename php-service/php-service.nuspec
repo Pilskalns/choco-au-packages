@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.3.1</version>
+    <version>7.3.3</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,94 +26,68 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #76654 (Build failure on Mac OS X on 32-bit Intel). (Ryandesign)
-  . Fixed bug #71041 (zend_signal_startup() needs ZEND_API).
-    (Valentin V. Bartenev)
-  . Fixed bug #76046 (PHP generates "FE_FREE" opcode on the wrong line).
-    (Nikita)
-  . Fixed bug #77291 (magic methods inherited from a trait may be ignored).
-    (cmb)
-
-- CURL:
-  . Fixed bug #77264 (curl_getinfo returning microseconds, not seconds).
-    (Pierrick)
+  . Fixed bug #77589 (Core dump using parse_ini_string with numeric sections).
+    (Laruence)
+  . Fixed bug #77329 (Buffer Overflow via overly long Error Messages).
+    (Dmitry)
+  . Fixed bug #77494 (Disabling class causes segfault on member access).
+    (Dmitry)
+  . Fixed bug #77498 (Custom extension Segmentation fault when declare static
+    property). (Nikita)
+  . Fixed bug #77530 (PHP crashes when parsing `(2)::class`). (Ekin)
+  . Fixed bug #77546 (iptcembed broken function). (gdegoulet)
+  . Fixed bug #77630 (rename() across the device may allow unwanted access
+    during processing). (Stas)
 
 - COM:
-  . Fixed bug #77177 (Serializing or unserializing COM objects crashes). (cmb)
-
-- Exif:
-  . Fixed bug #77184 (Unsigned rational numbers are written out as signed
-    rationals). (Colin Basnett)
-
-- GD:
-  . Fixed bug #77195 (Incorrect error handling of imagecreatefromjpeg()). (cmb)
-  . Fixed bug #77198 (auto cropping has insufficient precision). (cmb)
-  . Fixed bug #77200 (imagecropauto(â€¦, GD_CROP_SIDES) crops left but not right).
+  . Fixed bug #77621 (Already defined constants are not properly reported).
     (cmb)
-  . Fixed bug #77269 (efree() on uninitialized Heap data in imagescale leads to 
-    use-after-free). (cmb)
-  . Fixed bug #77270 (imagecolormatch Out Of Bounds Write on Heap). (cmb)
+  . Fixed bug #77626 (Persistence confusion in php_com_import_typelib()). (cmb)
 
-- MBString:
-  . Fixed bug #77367 (Negative size parameter in mb_split). (Stas)
-  . Fixed bug #77370 (Buffer overflow on mb regex functions - fetch_token).
-    (Stas)
-  . Fixed bug #77371 (heap buffer overflow in mb regex functions -
-    compile_string_node). (Stas)
-  . Fixed bug #77381 (heap buffer overflow in multibyte match_at). (Stas)
-  . Fixed bug #77382 (heap buffer overflow due to incorrect length in
-    expand_case_fold_string). (Stas)
-  . Fixed bug #77385 (buffer overflow in fetch_token). (Stas)
-  . Fixed bug #77394 (Buffer overflow in multibyte case folding - unicode).
-    (Stas)
-  . Fixed bug #77418 (Heap overflow in utf32be_mbc_to_code). (Stas)
+- EXIF:
+  . Fixed bug #77509 (Uninitialized read in exif_process_IFD_in_TIFF). (Stas)
+  . Fixed bug #77540 (Invalid Read on exif_process_SOFn). (Stas)
+  . Fixed bug #77563 (Uninitialized read in exif_process_IFD_in_MAKERNOTE). (Stas)
+  . Fixed bug #77659 (Uninitialized read in exif_process_IFD_in_MAKERNOTE). (Stas)
 
-- OCI8:
-  . Fixed bug #76804 (oci_pconnect with OCI_CRED_EXT not working). (KoenigsKind)
-  . Added oci_set_call_timeout() for call timeouts.
-  . Added oci_set_db_operation() for the DBOP end-to-end-tracing attribute.
-
-- Opcache:
-  . Fixed bug #77215 (CFG assertion failure on multiple finalizing switch
-    frees in one block). (Nikita)
-  . Fixed bug #77275 (OPcache optimization problem for ArrayAccess->offsetGet).
+- Mbstring:
+  . Fixed bug #77514 (mb_ereg_replace() with trailing backslash adds null byte).
     (Nikita)
 
-- PCRE:
-  . Fixed bug #77193 (Infinite loop in preg_replace_callback). (Anatol)
+- MySQL
+  . Disabled LOCAL INFILE by default, can be enabled using php.ini directive
+    mysqli.allow_local_infile for mysqli, or PDO::MYSQL_ATTR_LOCAL_INFILE
+    attribute for pdo_mysql. (Darek Slusarczyk)
 
-- PDO:
-  . Handle invalid index passed to PDOStatement::fetchColumn() as error. (Sergei
-    Morozov)
+- OpenSSL:
+  . Fixed bug #77390 (feof might hang on TLS streams in case of fragmented TLS
+    records). (Abyl Valg, Jakub Zelenka)
 
-- Phar:
-  . Fixed bug #77247 (heap buffer overflow in phar_detect_phar_fname_ext).
-    (Stas)
+- PDO_OCI:
+  . Support Oracle Database tracing attributes ACTION, MODULE,
+    CLIENT_INFO, and CLIENT_IDENTIFIER. (Cameron Porter)
 
-- Soap:
-  . Fixed bug #77088 (Segfault when using SoapClient with null options).
-    (Laruence)
+- PHAR:
+  . Fixed bug #77396 (Null Pointer Dereference in phar_create_or_parse_filename).
+    (bishop)
+  . Fixed bug #77586 (phar_tar_writeheaders_int() buffer overflow). (bishop)
 
-- Sockets:
-  . Fixed bug #77136 (Unsupported IPV6_RECVPKTINFO constants on macOS).
-    (Mizunashi Mana)
-
-- Sodium:
-  . Fixed bug #77297 (SodiumException segfaults on PHP 7.3). (Nikita, Scott)
+- phpdbg:
+  . Fixed bug #76596 (phpdbg support for display_errors=stderr). (kabel)
 
 - SPL:
-  . Fixed bug #77359 (spl_autoload causes segfault). (Lauri KenttÃ¤)
-  . Fixed bug #77360 (class_uses causes segfault). (Lauri KenttÃ¤)
+  . Fixed bug #51068 (DirectoryIterator glob:// don't support current path
+    relative queries). (Ahmed Abdou)
+  . Fixed bug #77431 (openFile() silently truncates after a null byte). (cmb)
 
-- SQLite3:
-  . Fixed bug #77051 (Issue with re-binding on SQLite3). (BohwaZ)
-
-- Xmlrpc:
-  . Fixed bug #77242 (heap out of bounds read in xmlrpc_decode()). (cmb)
-  . Fixed bug #77380 (Global out of bounds read in xmlrpc base64 code). (Stas)]]></releaseNotes>
+- Standard:
+  . Fixed bug #77552 (Unintialized php_stream_statbuf in stat functions).
+    (John Stevenson)
+  . Fixed bug #77612 (setcookie() sets incorrect SameSite header if all of its
+    options filled). (Nikita)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.3.1]" />
+		<dependency id="php" version="[7.3.3]" />
     </dependencies>
   </metadata>
   <files>
