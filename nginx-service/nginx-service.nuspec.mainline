@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.15.8-mainline</version>
+    <version>1.15.12-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,23 +57,9 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Feature: the $upstream_bytes_sent variable.
-   Thanks to Piotr Sikora.
-
-*) Feature: new directives in vim syntax highlighting scripts.
-   Thanks to Gena Makhomed.
-
-*) Bugfix: in the "proxy_cache_background_update" directive.
-
-*) Bugfix: in the "geo" directive when using unix domain listen sockets.
-
-*) Workaround: the "ignoring stale global SSL error ... bad length"
-   alerts might appear in logs when using the "ssl_early_data" directive
-   with OpenSSL.
-
-*) Bugfix: in nginx/Windows.
-
-*) Bugfix: in the ngx_http_autoindex_module on 32-bit platforms.]]></releaseNotes>
+	<releaseNotes><![CDATA[*) Bugfix: a segmentation fault might occur in a worker process if
+   variables were used in the "ssl_certificate" or "ssl_certificate_key"
+   directives and OCSP stapling was enabled.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
