@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.3.3</version>
+    <version>7.3.5</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,68 +26,71 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #77589 (Core dump using parse_ini_string with numeric sections).
-    (Laruence)
-  . Fixed bug #77329 (Buffer Overflow via overly long Error Messages).
-    (Dmitry)
-  . Fixed bug #77494 (Disabling class causes segfault on member access).
-    (Dmitry)
-  . Fixed bug #77498 (Custom extension Segmentation fault when declare static
-    property). (Nikita)
-  . Fixed bug #77530 (PHP crashes when parsing `(2)::class`). (Ekin)
-  . Fixed bug #77546 (iptcembed broken function). (gdegoulet)
-  . Fixed bug #77630 (rename() across the device may allow unwanted access
-    during processing). (Stas)
-
-- COM:
-  . Fixed bug #77621 (Already defined constants are not properly reported).
-    (cmb)
-  . Fixed bug #77626 (Persistence confusion in php_com_import_typelib()). (cmb)
-
-- EXIF:
-  . Fixed bug #77509 (Uninitialized read in exif_process_IFD_in_TIFF). (Stas)
-  . Fixed bug #77540 (Invalid Read on exif_process_SOFn). (Stas)
-  . Fixed bug #77563 (Uninitialized read in exif_process_IFD_in_MAKERNOTE). (Stas)
-  . Fixed bug #77659 (Uninitialized read in exif_process_IFD_in_MAKERNOTE). (Stas)
-
-- Mbstring:
-  . Fixed bug #77514 (mb_ereg_replace() with trailing backslash adds null byte).
+  . Fixed bug #77903 (ArrayIterator stops iterating after offsetSet call).
     (Nikita)
 
-- MySQL
-  . Disabled LOCAL INFILE by default, can be enabled using php.ini directive
-    mysqli.allow_local_infile for mysqli, or PDO::MYSQL_ATTR_LOCAL_INFILE
-    attribute for pdo_mysql. (Darek Slusarczyk)
+- CLI:
+  . Fixed bug #77794 (Incorrect Date header format in built-in server).
+    (kelunik)
 
-- OpenSSL:
-  . Fixed bug #77390 (feof might hang on TLS streams in case of fragmented TLS
-    records). (Abyl Valg, Jakub Zelenka)
+- EXIF
+  . Fixed bug #77950 (Heap-buffer-overflow in _estrndup via exif_process_IFD_TAG). 
+    (CVE-2019-11036) (Stas)
 
-- PDO_OCI:
-  . Support Oracle Database tracing attributes ACTION, MODULE,
-    CLIENT_INFO, and CLIENT_IDENTIFIER. (Cameron Porter)
+- Interbase:
+  . Fixed bug #72175 (Impossibility of creating multiple connections to
+    Interbase with php 7.x). (Nikita)
 
-- PHAR:
-  . Fixed bug #77396 (Null Pointer Dereference in phar_create_or_parse_filename).
-    (bishop)
-  . Fixed bug #77586 (phar_tar_writeheaders_int() buffer overflow). (bishop)
+- Intl:
+  . Fixed bug #77895 (IntlDateFormatter::create fails in strict mode if $locale
+    = null). (Nikita)
+
+- litespeed:
+  . LiteSpeed SAPI 7.3.1, better process management, new API function
+    litespeed_finish_request(). (George Wang)
+
+- LDAP:
+  . Fixed bug #77869 (Core dump when using server controls) (mcmic)
+
+- Mail
+  . Fixed bug #77821 (Potential heap corruption in TSendMail()). (cmb)
+
+- mbstring:
+  . Implemented FR #72777 (Implement regex stack limits for mbregex functions).
+    (Yasuo Ohgaki, Stas)
+
+- MySQLi:
+  . Fixed bug #77773 (Unbuffered queries leak memory - MySQLi / mysqlnd).
+    (Nikita)
+
+- PCRE:
+  . Fixed bug #77827 (preg_match does not ignore \r in regex flags). (requinix,
+    cmb)
+
+- PDO:
+  . Fixed bug #77849 (Disable cloning of PDO handle/connection objects).
+    (camporter)
 
 - phpdbg:
-  . Fixed bug #76596 (phpdbg support for display_errors=stderr). (kabel)
+  . Fixed bug #76801 (too many open files). (alekitto)
+  . Fixed bug #77800 (phpdbg segfaults on listing some conditional breakpoints).
+    (krakjoe)
+  . Fixed bug #77805 (phpdbg build fails when readline is shared). (krakjoe)
 
-- SPL:
-  . Fixed bug #51068 (DirectoryIterator glob:// don't support current path
-    relative queries). (Ahmed Abdou)
-  . Fixed bug #77431 (openFile() silently truncates after a null byte). (cmb)
+- Reflection:
+  . Fixed bug #77772 (ReflectionClass::getMethods(null) doesn't work). (Nikita)
+  . Fixed bug #77882 (Different behavior: always calls destructor). (Nikita)
 
 - Standard:
-  . Fixed bug #77552 (Unintialized php_stream_statbuf in stat functions).
-    (John Stevenson)
-  . Fixed bug #77612 (setcookie() sets incorrect SameSite header if all of its
-    options filled). (Nikita)]]></releaseNotes>
+  . Fixed bug #77793 (Segmentation fault in extract() when overwriting
+    reference with itself). (Nikita)
+  . Fixed bug #77844 (Crash due to null pointer in parse_ini_string with
+    INI_SCANNER_TYPED). (Nikita)
+  . Fixed bug #77853 (Inconsistent substr_compare behaviour with empty
+    haystack). (Nikita)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.3.3]" />
+		<dependency id="php" version="[7.3.5]" />
     </dependencies>
   </metadata>
   <files>
