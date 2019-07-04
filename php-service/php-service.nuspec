@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.3.6</version>
+    <version>7.3.7</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,60 +25,55 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- cURL:
-  . Implemented FR #72189 (Add missing CURL_VERSION_* constants). (Javier
-    Spagnoletti)
+	  <releaseNotes><![CDATA[- Core:
+  . Fixed bug #76980 (Interface gets skipped if autoloader throws an exception).
+    (Nikita)
 
-- EXIF:
-  . Fixed bug #77988 (heap-buffer-overflow on php_jpg_get16).
-    (CVE-2019-11040) (Stas)
+- DOM:
+  . Fixed bug #78025 (segfault when accessing properties of DOMDocumentType).
+    (cmb)
 
-- FPM:
-  . Fixed bug #77934 (php-fpm kill -USR2 not working). (Jakub Zelenka)
-  . Fixed bug #77921 (static.php.net doesn't work anymore). (Peter Kokot)
+- MySQLi:
+  . Fixed bug #77956 (When mysqli.allow_local_infile = Off, use a meaningful
+    error message). (Sjon Hortensius)
+  . Fixed bug #38546 (bindParam incorrect processing of bool types).
+    (camporter)
 
-- GD:
-  . Fixed bug #77943 (imageantialias($image, false); does not work). (cmb)
-  . Fixed bug #77973 (Uninitialized read in gdImageCreateFromXbm).
-    (CVE-2019-11038) (cmb)
-
-- Iconv:
-  . Fixed bug #78069 (Out-of-bounds read in iconv.c:_php_iconv_mime_decode()
-    due to integer overflow). (CVE-2019-11039). (maris dot adam)
-
-- JSON:
-  . Fixed bug #77843 (Use after free with json serializer). (Nikita)
+- MySQLnd:
+  . Fixed bug #77955 (Random segmentation fault in mysqlnd from php-fpm).
+    (Nikita)
 
 - Opcache:
-  . Fixed possible crashes, because of inconsistent PCRE cache and opcache
-    SHM reset. (Alexey Kalinin, Dmitry)
+  . Fixed bug #78015 (Incorrect evaluation of expressions involving partials
+    arrays in SCCP). (Nikita)
+  . Fixed bug #78106 (Path resolution fails if opcache disabled during request).
+    (Nikita)
 
-- PDO_MySQL:
-  . Fixed bug #77944 (Wrong meta pdo_type for bigint on LLP64). (cmb)
+- OpenSSL:
+  . Fixed bug #78079 (openssl_encrypt_ccm.phpt fails with OpenSSL 1.1.1c).
+    (Jakub Zelenka)
 
-- Reflection:
-  . Fixed bug #75186 (Inconsistent reflection of Closure:::__invoke()). (Nikita)
+- phpdbg:
+  . Fixed bug #78050 (SegFault phpdbg + opcache on include file twice).
+    (Nikita)
 
-- Session:
-  . Fixed bug #77911 (Wrong warning for session.sid_bits_per_character). (cmb)
+- Sockets:
+  . Fixed bug #78038 (Socket_select fails when resource array contains
+    references). (Nikita)
 
-- SOAP:
-  . Fixed bug #77945 (Segmentation fault when constructing SoapClient with
-    WSDL_CACHE_BOTH). (Nikita)
-
-- SPL:
-  . Fixed bug #77024 (SplFileObject::__toString() may return array). (Craig
-    Duncan)
-
-- SQLite:
-  . Fixed bug #77967 (Bypassing open_basedir restrictions via file uris). (Stas)
+- Sodium:
+  . Fixed bug #78114 (segfault when calling sodium_* functions from eval). (cmb)
 
 - Standard:
-  . Fixed bug #77931 (Warning for array_map mentions wrong type). (Nikita)
-  . Fixed bug #78003 (strip_tags output change since PHP 7.3). (cmb)]]></releaseNotes>
+  . Fixed bug #77135 (Extract with EXTR_SKIP should skip $this).
+    (Craig Duncan, Dmitry)
+  . Fixed bug ##77937	(preg_match failed). (cmb, Anatol)
+
+- Zip:
+  . Fixed bug #76345 (zip.h not found). (Michael Maroszek)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.3.6]" />
+		<dependency id="php" version="[7.3.7]" />
     </dependencies>
   </metadata>
   <files>
