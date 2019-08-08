@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.3.7</version>
+    <version>7.3.8</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,54 +26,70 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #76980 (Interface gets skipped if autoloader throws an exception).
-    (Nikita)
+  . Added syslog.filter=raw option. (Erik Lundin)
+  . Fixed bug #78212 (Segfault in built-in webserver). (cmb)
 
-- DOM:
-  . Fixed bug #78025 (segfault when accessing properties of DOMDocumentType).
-    (cmb)
+- Date:
+  . Fixed bug #69044 (discrepency between time and microtime). (krakjoe)
+  . Updated timelib to 2018.02. (Derick)
 
-- MySQLi:
-  . Fixed bug #77956 (When mysqli.allow_local_infile = Off, use a meaningful
-    error message). (Sjon Hortensius)
-  . Fixed bug #38546 (bindParam incorrect processing of bool types).
-    (camporter)
+- EXIF:
+  . Fixed bug #78256 (heap-buffer-overflow on exif_process_user_comment).
+    (CVE-2019-11042) (Stas)
+  . Fixed bug #78222 (heap-buffer-overflow on exif_scan_thumbnail).
+    (CVE-2019-11041) (Stas)
 
-- MySQLnd:
-  . Fixed bug #77955 (Random segmentation fault in mysqlnd from php-fpm).
-    (Nikita)
+- FTP:
+  . Fixed bug #78039 (FTP with SSL memory leak). (Nikita)
+
+- Libxml:
+  . Fixed bug #78279 (libxml_disable_entity_loader settings is shared between
+    requests (cgi-fcgi)). (Nikita)
+
+- LiteSpeed:
+  . Updated to LiteSpeed SAPI V7.4.3 (increased response header count limit from
+    100 to 1000, added crash handler to cleanly shutdown PHP request, added
+    CloudLinux mod_lsapi mode). (George Wang)
+  . Fixed bug #76058 (After "POST data can't be buffered", using php://input
+    makes huge tmp files). (George Wang)
+
+- Openssl:
+  . Fixed bug #78231 (Segmentation fault upon stream_socket_accept of exported
+    socket-to-stream). (Nikita)
 
 - Opcache:
-  . Fixed bug #78015 (Incorrect evaluation of expressions involving partials
-    arrays in SCCP). (Nikita)
-  . Fixed bug #78106 (Path resolution fails if opcache disabled during request).
-    (Nikita)
+  . Fixed bug #78341 (Failure to detect smart branch in DFA pass). (Nikita)
+  . Fixed bug #78189 (file cache strips last character of uname hash). (cmb)
+  . Fixed bug #78202 (Opcache stats for cache hits are capped at 32bit NUM).
+    (cmb)
+  . Fixed bug #78271 (Invalid result of if-else). (Nikita)
+  . Fixed bug #78291 (opcache_get_configuration doesn't list all directives).
+    (Andrew Collington)
 
-- OpenSSL:
-  . Fixed bug #78079 (openssl_encrypt_ccm.phpt fails with OpenSSL 1.1.1c).
-    (Jakub Zelenka)
+- PCRE:
+  . Fixed bug #78338 (Array cross-border reading in PCRE). (cmb)
+  . Fixed bug #78197 (PCRE2 version check in configure fails for "##.##-xxx"
+    version strings). (pgnet, Peter Kokot)
 
-- phpdbg:
-  . Fixed bug #78050 (SegFault phpdbg + opcache on include file twice).
-    (Nikita)
+- PDO_Sqlite:
+  . Fixed bug #78192 (SegFault when reuse statement after schema has changed).
+    (Vincent Quatrevieux)
 
-- Sockets:
-  . Fixed bug #78038 (Socket_select fails when resource array contains
-    references). (Nikita)
+- Phar:
+  . Fixed bug #77919 (Potential UAF in Phar RSHUTDOWN). (cmb)
 
-- Sodium:
-  . Fixed bug #78114 (segfault when calling sodium_* functions from eval). (cmb)
+- Phpdbg:
+  . Fixed bug #78297 (Include unexistent file memory leak). (Nikita)
+
+- SQLite:
+  . Upgraded to SQLite 3.28.0. (cmb)
 
 - Standard:
-  . Fixed bug #77135 (Extract with EXTR_SKIP should skip $this).
-    (Craig Duncan, Dmitry)
-  . Fixed bug ##77937	(preg_match failed). (cmb, Anatol)
-
-- Zip:
-  . Fixed bug #76345 (zip.h not found). (Michael Maroszek)]]></releaseNotes>
+  . Fixed bug #78241 (touch() does not handle dates after 2038 in PHP 64-bit). (cmb)
+  . Fixed bug #78269 (password_hash uses weak options for argon2). (Remi)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.3.7]" />
+		<dependency id="php" version="[7.3.8]" />
     </dependencies>
   </metadata>
   <files>
