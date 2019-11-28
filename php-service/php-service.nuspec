@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.3.12</version>
+    <version>7.4.0</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,44 +25,10 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #78658 (Memory corruption using Closure::bindTo). (Nikita)
-  . Fixed bug #78656 (Parse errors classified as highest log-level). (Erik
-    Lundin)
-  . Fixed bug #78752 (Segfault if GC triggered while generator stack frame is
-    being destroyed). (Nikita)
-  . Fixed bug #78689 (Closure::fromCallable() doesn't handle
-    [Closure, '__invoke']). (Nikita)
-
-- COM:
-  . Fixed bug #78694 (Appending to a variant array causes segfault). (cmb)
-
-- Date:
-  . Fixed bug #70153 (\DateInterval incorrectly unserialized). (Maksim Iakunin)
-  . Fixed bug #78751 (Serialising DatePeriod converts DateTimeImmutable). (cmb)
-
-- Iconv:
-  . Fixed bug #78642 (Wrong libiconv version displayed). (gedas at martynas,
-    cmb).
-
-- OpCache:
-  . Fixed bug #78654 (Incorrectly computed opcache checksum on files with 
-    non-ascii characters). (mhagstrand)
-  . Fixed bug #78747 (OpCache corrupts custom extension result). (Nikita)
-
-- OpenSSL:
-  . Fixed bug #78775 (TLS issues from HTTP request affecting other encrypted
-    connections). (Nikita)
-
-- Reflection:
-  . Fixed bug #78697 (ReflectionClass::ImplementsInterface - inaccurate error 
-    message with traits). (villfa)
-
-- Sockets:
-  . Fixed bug #78665 (Multicasting may leak memory). (cmb)]]></releaseNotes>
+	  <releaseNotes></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.3.12]" />
+		<dependency id="php" version="[7.4.0]" />
     </dependencies>
   </metadata>
   <files>
