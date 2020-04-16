@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.4.3</version>
+    <version>7.4.5</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,94 +26,60 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #79146 (cscript can fail to run on some systems). (clarodeus)
-  . Fixed bug #79155 (Property nullability lost when using multiple property
-    definition). (Nikita)
-  . Fixed bug #78323 (Code 0 is returned on invalid options). (Ivan Mikheykin)
-  . Fixed bug #78989 (Delayed variance check involving trait segfaults).
-    (Nikita)
-  . Fixed bug #79174 (cookie values with spaces fail to round-trip). (cmb)
-  . Fixed bug #76047 (Use-after-free when accessing already destructed
-    backtrace arguments). (Nikita)
-
-- COM:
-  . Fixed bug #79247 (Garbage collecting variant objects segfaults). (cmb)
+  . Fixed bug #79364 (When copy empty array, next key is unspecified). (cmb)
+  . Fixed bug #78210 (Invalid pointer address). (cmb, Nikita)
 
 - CURL:
-  . Fixed bug #79078 (Hypothetical use-after-free in curl_multi_add_handle()).
-    (cmb)
+  . Fixed bug #79199 (curl_copy_handle() memory leak). (cmb)
 
-- FFI:
-  . Fixed bug #79096 (FFI Struct Segfault). (cmb)
+- Date:
+  . Fixed bug #79396 (DateTime hour incorrect during DST jump forward). (Nate
+    Brunette)
+  . Fixed bug #74940 (DateTimeZone loose comparison always true). (cmb)
 
-- IMAP:
-  . Fixed bug #79112 (IMAP extension can't find OpenSSL libraries at configure
-    time). (Nikita)
+- FPM:
+  . Implement request #77062 (Allow numeric [UG]ID in FPM listen.{owner,group})
+    (Andre Nathan)
 
- -Intl:
-  . Fixed bug #79212 (NumberFormatter::format() may detect wrong type). (cmb)
+- Iconv:
+  . Fixed bug #79200 (Some iconv functions cut Windows-1258). (cmb)
 
-- Libxml:
-  . Fixed bug #79191 (Error in SoapClient ctor disables DOMDocument::save()).
-    (Nikita, cmb)
-
-- MBString:
-  . Fixed bug #79149 (SEGV in mb_convert_encoding with non-string encodings).
-    (cmb)
-
-- MySQLi:
-  . Fixed bug #78666 (Properties may emit a warning on var_dump()). (kocsismate)
-
-- MySQLnd:
-  . Fixed bug #79084 (mysqlnd may fetch wrong column indexes with MYSQLI_BOTH).
-    (cmb)
-  . Fixed bug #79011 (MySQL caching_sha2_password Access denied for password
-    with more than 20 chars). (Nikita)
-
-- Opcache:
-  . Fixed bug #79114 (Eval class during preload causes class to be only half
-    available). (Laruence)
-  . Fixed bug #79128 (Preloading segfaults if preload_user is used). (Nikita)
-  . Fixed bug #79193 (Incorrect type inference for self::$field =& $field).
-    (Nikita)
-
-- OpenSSL:
-  . Fixed bug #79145 (openssl memory leak). (cmb, Nikita)
-
-- Phar:
-  . Fixed bug #79082 (Files added to tar with Phar::buildFromIterator have
-    all-access permissions). (CVE-2020-7063) (stas)
-  . Fixed bug #79171 (heap-buffer-overflow in phar_extract_file).
-    (CVE-2020-7061) (cmb)
-  . Fixed bug #76584 (PharFileInfo::decompress not working). (cmb)
-
-- Reflection:
-  . Fixed bug #79115 (ReflectionClass::isCloneable call reflected class
-    __destruct). (Nikita)
+- OPcache:
+  . Fixed bug #79412 (Opcache chokes and uses 100% CPU on specific script).
+    (Dmitry)
 
 - Session:
-  . Fixed bug #79221 (Null Pointer Dereference in PHP Session Upload Progress).
-    (CVE-2020-7062) (stas)
+  . Fixed bug #79413 (session_create_id() fails for active sessions). (cmb)
+
+- Shmop:
+  . Fixed bug #79427 (Integer Overflow in shmop_open()). (cmb)
+
+- SimpleXML:
+  . Fixed bug #61597 (SXE properties may lack attributes and content). (cmb)
+
+- SOAP:
+  . Fixed bug #79357 (SOAP request segfaults when any request parameter is
+    missing). (Nikita)
+
+- Spl:
+  . Fixed bug #75673 (SplStack::unserialize() behavior). (cmb)
+  . Fixed bug #79393 (Null coalescing operator failing with SplFixedArray).
+    (cmb)
 
 - Standard:
-  . Fixed bug #78902 (Memory leak when using stream_filter_append). (liudaixiao)
-  . Fixed bug #78969 (PASSWORD_DEFAULT should match PASSWORD_BCRYPT instead of being null). (kocsismate)
+  . Fixed bug #79330 (shell_exec() silently truncates after a null byte). (stas)
+  . Fixed bug #79410 (system() swallows last chunk if it is exactly 4095 bytes
+    without newline). (Christian Schneider)
+  . Fixed bug #79465 (OOB Read in urldecode()). (stas)
 
-- Testing:
-  . Fixed bug #78090 (bug45161.phpt takes forever to finish). (cmb)
-
-- XSL:
-  . Fixed bug #70078 (XSL callbacks with nodes as parameter leak memory). (cmb)
 
 - Zip:
-  . Add ZipArchive::CM_LZMA2 and ZipArchive::CM_XZ constants (since libzip 1.6.0). (Remi)
-  . Add ZipArchive::RDONLY (since libzip 1.0.0). (Remi)
-  . Add ZipArchive::ER_* missing constants. (Remi)
-  . Add ZipArchive::LIBZIP_VERSION constant. (Remi)
-  . Fixed bug #73119 (Wrong return for ZipArchive::addEmptyDir Method). (Remi)]]></releaseNotes>
+  . Fixed Bug #79296 (ZipArchive::open fails on empty file). (Remi)
+  . Fixed bug #79424 (php_zip_glob uses gl_pathc after call to globfree).
+    (Max Rees)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.4.3]" />
+		<dependency id="php" version="[7.4.5]" />
     </dependencies>
   </metadata>
   <files>
