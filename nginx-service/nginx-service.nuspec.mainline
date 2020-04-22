@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.17.3-mainline</version>
+    <version>1.17.10-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -12,7 +12,7 @@
     <authors>Igor Sysoev</authors>
     <projectUrl>http://nginx.org/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/nginx-service/nginx-service.png</iconUrl>
-    <copyright>2019 &#169; Nginx, Inc.</copyright>
+    <copyright>2020 &#169; Nginx, Inc.</copyright>
     <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://trac.nginx.org/nginx/browser</projectSourceUrl>
@@ -57,15 +57,7 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: when using HTTP/2 a client might cause excessive memory
-   consumption and CPU usage (CVE-2019-9511, CVE-2019-9513,
-   CVE-2019-9516).
-
-*) Bugfix: "zero size buf" alerts might appear in logs when using
-   gzipping; the bug had appeared in 1.17.2.
-
-*) Bugfix: a segmentation fault might occur in a worker process if the
-   "resolver" directive was used in SMTP proxy.]]></releaseNotes>
+	<releaseNotes><![CDATA[*) Feature: the "auth_delay" directive.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
