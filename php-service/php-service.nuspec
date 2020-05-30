@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.4.5</version>
+    <version>7.4.6</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,60 +26,61 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #79364 (When copy empty array, next key is unspecified). (cmb)
-  . Fixed bug #78210 (Invalid pointer address). (cmb, Nikita)
+  . Fixed bug #78434 (Generator yields no items after valid() call). (Nikita)
+  . Fixed bug #79477 (casting object into array creates references). (Nikita)
+  . Fixed bug #79514 (Memory leaks while including unexistent file). (cmb,
+    Nikita)
+  . Fixed bug #79470 (PHP incompatible with 3rd party file system on demand).
+    (cmb)
+  . Fixed bug #78784 (Unable to interact with files inside a VFS for Git
+    repository). (cmb)
+  . Fixed bug #78875 (Long variables cause OOM and temp files are not cleaned).
+    (cmb) (CVE-2019-11048)
+  . Fixed bug #78876 (Long variables cause OOM and temp files are not cleaned).
+    (cmb) (CVE-2019-11048)
 
-- CURL:
-  . Fixed bug #79199 (curl_copy_handle() memory leak). (cmb)
-
-- Date:
-  . Fixed bug #79396 (DateTime hour incorrect during DST jump forward). (Nate
-    Brunette)
-  . Fixed bug #74940 (DateTimeZone loose comparison always true). (cmb)
-
-- FPM:
-  . Implement request #77062 (Allow numeric [UG]ID in FPM listen.{owner,group})
-    (Andre Nathan)
-
-- Iconv:
-  . Fixed bug #79200 (Some iconv functions cut Windows-1258). (cmb)
-
-- OPcache:
-  . Fixed bug #79412 (Opcache chokes and uses 100% CPU on specific script).
-    (Dmitry)
-
-- Session:
-  . Fixed bug #79413 (session_create_id() fails for active sessions). (cmb)
-
-- Shmop:
-  . Fixed bug #79427 (Integer Overflow in shmop_open()). (cmb)
-
-- SimpleXML:
-  . Fixed bug #61597 (SXE properties may lack attributes and content). (cmb)
-
-- SOAP:
-  . Fixed bug #79357 (SOAP request segfaults when any request parameter is
-    missing). (Nikita)
-
-- Spl:
-  . Fixed bug #75673 (SplStack::unserialize() behavior). (cmb)
-  . Fixed bug #79393 (Null coalescing operator failing with SplFixedArray).
+- DOM:
+  . Fixed bug #78221 (DOMNode::normalize() doesn't remove empty text nodes).
     (cmb)
 
+- EXIF:
+  . Fixed bug #79336 (ext/exif/tests/bug79046.phpt fails on Big endian arch).
+    (Nikita)
+
+- FCGI:
+  . Fixed bug #79491 (Search for .user.ini extends up to root dir). (cmb)
+
+- MBString:
+  . Fixed bug #79441 (Segfault in mb_chr() if internal encoding is unsupported).
+    (Girgias)
+
+- OpenSSL:
+  . Fixed bug #79497 (stream_socket_client() throws an unknown error sometimes
+    with <1s timeout). (Joe Cai)
+
+- PCRE:
+  . Upgraded to PCRE2 10.34. (cmb)
+
+- Phar:
+  . Fixed bug #79503 (Memory leak on duplicate metadata). (cmb)
+
+- SimpleXML:
+  . Fixed bug #79528 (Different object of the same xml between 7.4.5 and
+    7.4.4). (cmb)
+
+- SPL:
+  . Fixed bug #69264 (__debugInfo() ignored while extending SPL classes). (cmb)
+  . Fixed bug #67369 (ArrayObject serialization drops the iterator class).
+    (Alex Dowad)
+
 - Standard:
-  . Fixed bug #79330 (shell_exec() silently truncates after a null byte). (stas)
-  . Fixed bug #79410 (system() swallows last chunk if it is exactly 4095 bytes
-    without newline). (Christian Schneider)
-  . Fixed bug #79465 (OOB Read in urldecode()). (stas)
-
-
-- Zip:
-  . Fixed Bug #79296 (ZipArchive::open fails on empty file). (Remi)
-  . Fixed bug #79424 (php_zip_glob uses gl_pathc after call to globfree).
-    (Max Rees)]]></releaseNotes>
+  . Fixed bug #79468 (SIGSEGV when closing stream handle with a stream filter
+    appended). (dinosaur)
+  . Fixed bug #79447 (Serializing uninitialized typed properties with __sleep
+    should not throw). (nicolas-grekas)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.4.5]" />
+		<dependency id="php" version="[7.4.6]" />
     </dependencies>
   </metadata>
   <files>
