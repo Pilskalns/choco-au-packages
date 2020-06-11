@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.4.6</version>
+    <version>7.4.7</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,61 +26,31 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #78434 (Generator yields no items after valid() call). (Nikita)
-  . Fixed bug #79477 (casting object into array creates references). (Nikita)
-  . Fixed bug #79514 (Memory leaks while including unexistent file). (cmb,
-    Nikita)
-  . Fixed bug #79470 (PHP incompatible with 3rd party file system on demand).
-    (cmb)
-  . Fixed bug #78784 (Unable to interact with files inside a VFS for Git
-    repository). (cmb)
-  . Fixed bug #78875 (Long variables cause OOM and temp files are not cleaned).
-    (cmb) (CVE-2019-11048)
-  . Fixed bug #78876 (Long variables cause OOM and temp files are not cleaned).
-    (cmb) (CVE-2019-11048)
-
-- DOM:
-  . Fixed bug #78221 (DOMNode::normalize() doesn't remove empty text nodes).
-    (cmb)
-
-- EXIF:
-  . Fixed bug #79336 (ext/exif/tests/bug79046.phpt fails on Big endian arch).
+  . Fixed bug #79599 (coredump in set_error_handler). (Laruence)
+  . Fixed bug #79566 (Private SHM is not private on Windows). (cmb)
+  . Fixed bug #79489 (.user.ini does not inherit). (cmb)
+  . Fixed bug #79600 (Regression in 7.4.6 when yielding an array based
+    generator). (Nikita)
+  . Fixed bug #79657 ("yield from" hangs when invalid value encountered).
     (Nikita)
 
-- FCGI:
-  . Fixed bug #79491 (Search for .user.ini extends up to root dir). (cmb)
+- FFI:
+  . Fixed bug #79571 (FFI: var_dumping unions may segfault). (cmb)
 
-- MBString:
-  . Fixed bug #79441 (Segfault in mb_chr() if internal encoding is unsupported).
-    (Girgias)
+- GD:
+  . Fixed bug #79615 (Wrong GIF header written in GD GIFEncode). (sageptr, cmb)
 
-- OpenSSL:
-  . Fixed bug #79497 (stream_socket_client() throws an unknown error sometimes
-    with <1s timeout). (Joe Cai)
-
-- PCRE:
-  . Upgraded to PCRE2 10.34. (cmb)
-
-- Phar:
-  . Fixed bug #79503 (Memory leak on duplicate metadata). (cmb)
-
-- SimpleXML:
-  . Fixed bug #79528 (Different object of the same xml between 7.4.5 and
-    7.4.4). (cmb)
-
-- SPL:
-  . Fixed bug #69264 (__debugInfo() ignored while extending SPL classes). (cmb)
-  . Fixed bug #67369 (ArrayObject serialization drops the iterator class).
-    (Alex Dowad)
+- Opcache:
+  . Fixed bug #79588 (Boolean opcache settings ignore on/off values). (cmb)
+  . Fixed bug #79548 (Preloading segfault with inherited method using static
+    variable). (Nikita)
+  . Fixed bug #79603 (RTD collision with opcache). (Nikita)
 
 - Standard:
-  . Fixed bug #79468 (SIGSEGV when closing stream handle with a stream filter
-    appended). (dinosaur)
-  . Fixed bug #79447 (Serializing uninitialized typed properties with __sleep
-    should not throw). (nicolas-grekas)]]></releaseNotes>
+  . Fixed bug #79561 (dns_get_record() fails with DNS_ALL). (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.4.6]" />
+		<dependency id="php" version="[7.4.7]" />
     </dependencies>
   </metadata>
   <files>
