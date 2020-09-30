@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.4.9</version>
+    <version>7.4.11</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,65 +25,49 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Apache:
-  . Fixed bug #79030 (Upgrade apache2handler's php_apache_sapi_get_request_time
-    to return usec). (Herbert256)
+	  <releaseNotes><![CDATA[- Core:
+  . Fixed bug #79699 (PHP parses encoded cookie names so malicious `__Host-`
+    cookies can be sent). (CVE-2020-7070) (Stas)
+  . Fixed bug #79979 (passing value to by-ref param via CUFA crashes). (cmb,
+    Nikita)
+  . Fixed bug #80037 (Typed property must not be accessed before initialization
+    when __get() declared). (Nikita)
+  . Fixed bug #80048 (Bug #69100 has not been fixed for Windows). (cmb)
+  . Fixed bug #80049 (Memleak when coercing integers to string via variadic
+    argument). (Nikita)
+
+- Calendar:
+  . Fixed bug #80007 (Potential type confusion in unixtojd() parameter parsing).
+    (Andy Postnikov)
 
 - COM:
-  . Fixed bug #63208 (BSTR to PHP string conversion not binary safe). (cmb)
-  . Fixed bug #63527 (DCOM does not work with Username, Password parameter).
+  . Fixed bug #64130 (COM obj parameters passed by reference are not updated).
     (cmb)
 
-- Core:
-  . Fixed bug #79740 (serialize() and unserialize() methods can not be called
-    statically). (Nikita)
-  . Fixed bug #79783 (Segfault in php_str_replace_common). (Nikita)
-  . Fixed bug #79778 (Assertion failure if dumping closure with unresolved
-    static variable). (Nikita)
-  . Fixed bug #79779 (Assertion failure when assigning property of string
-    offset by reference). (Nikita)
-  . Fixed bug #79792 (HT iterators not removed if empty array is destroyed).
-    (Nikita)
-  . Fixed bug #78598 (Changing array during undef index RW error segfaults).
-    (Nikita)
-  . Fixed bug #79784 (Use after free if changing array during undef var during
-    array write fetch). (Nikita)
-  . Fixed bug #79793 (Use after free if string used in undefined index warning
-    is changed). (Nikita)
-  . Fixed bug #79862 (Public non-static property in child should take priority
-    over private static). (Nikita)
-  . Fixed bug #79877 (getimagesize function silently truncates after a null
-    byte) (cmb)
+- OPcache:
+  . Fixed bug #80002 (calc free space for new interned string is wrong).
+    (t-matsuno)
+  . Fixed bug #80046 (FREE for SWITCH_STRING optimized away). (Nikita)
+  . Fixed bug #79825 (opcache.file_cache causes SIGSEGV when custom opcode
+    handlers changed). (SammyK)
 
-- Fileinfo:
-  . Fixed bug #79756 (finfo_file crash (FILEINFO_MIME)). (cmb)
+- OpenSSL:
+  . Fixed bug #79601 (Wrong ciphertext/tag in AES-CCM encryption for a 12
+    bytes IV). (CVE-2020-7069) (Jakub Zelenka)
 
-- FTP:
-  . Fixed bug #55857 (ftp_size on large files). (cmb)
-
-- Mbstring:
-  . Fixed bug #79787 (mb_strimwidth does not trim string). (XXiang)
-
-- Phar:
-  . Fixed bug #79797 (Use of freed hash key in the phar_parse_zipfile
-    function). (CVE-2020-7068) (cmb)
-
-- Reflection:
-  . Fixed bug #79487 (::getStaticProperties() ignores property modifications).
-    (cmb, Nikita)
-  . Fixed bug #69804 (::getStaticPropertyValue() throws on protected props).
-    (cmb, Nikita)
-  . Fixed bug #79820 (Use after free when type duplicated into
-    ReflectionProperty gets resolved). (Christopher Broadbent)
+- PDO:
+  . Fixed bug #80027 (Terrible performance using $query->fetch on queries with
+    many bind parameters (Matteo)
 
 - Standard:
-  . Fixed bug #70362 (Can't copy() large 'data://' with open_basedir). (cmb)
-  . Fixed bug #78008 (dns_check_record() always return true on Alpine).
-    (Andy Postnikov)
-  . Fixed bug #79839 (array_walk() does not respect property types). (Nikita)]]></releaseNotes>
+  . Fixed bug #79986 (str_ireplace bug with diacritics characters). (cmb)
+  . Fixed bug #80077 (getmxrr test bug). (Rainer Jung)
+  . Fixed bug #72941 (Modifying bucket->data by-ref has no effect any longer).
+    (cmb)
+  . Fixed bug #80067 (Omitting the port in bindto setting errors). (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.4.9]" />
+		<dependency id="php" version="[7.4.11]" />
     </dependencies>
   </metadata>
   <files>
