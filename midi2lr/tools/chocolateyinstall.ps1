@@ -7,8 +7,8 @@ $packageArgs = @{
   fileType      = 'EXE'
   softwareName  = 'midi2lr*'
 
-  url           = 'https://github.com/rsjaffe/MIDI2LR/releases/download/v4.0.3.0/MIDI2LR-4.0.3.0-windows-installer.exe'
-  checksum      = 'e2f1854ce4d5895e6c7de9be7e61810685cc69158a3c82518adb0c871b52941e'
+  url           = 'https://github.com/rsjaffe/MIDI2LR/releases/download/v4.0.4.0/MIDI2LR-4.0.4.0-windows-installer.exe'
+  checksum      = 'ea9cc49313f0078cc90de5e7ac31947d236aaa175b28554924dbb4e7bfb4eab1'
   checksumType  = 'sha256'
  
   silentArgs    = '--mode unattended --unattendedmodeui none'
