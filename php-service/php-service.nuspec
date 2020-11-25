@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.4.11</version>
+    <version>7.4.13</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,48 +26,64 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #79699 (PHP parses encoded cookie names so malicious `__Host-`
-    cookies can be sent). (CVE-2020-7070) (Stas)
-  . Fixed bug #79979 (passing value to by-ref param via CUFA crashes). (cmb,
-    Nikita)
-  . Fixed bug #80037 (Typed property must not be accessed before initialization
-    when __get() declared). (Nikita)
-  . Fixed bug #80048 (Bug #69100 has not been fixed for Windows). (cmb)
-  . Fixed bug #80049 (Memleak when coercing integers to string via variadic
-    argument). (Nikita)
-
-- Calendar:
-  . Fixed bug #80007 (Potential type confusion in unixtojd() parameter parsing).
-    (Andy Postnikov)
+  . Fixed bug #80280 (ADD_EXTENSION_DEP() fails for ext/standard and ext/date).
+    (cmb)
+  . Fixed bug #80258 (Windows Deduplication Enabled, randon permission errors).
+    (cmb)
 
 - COM:
-  . Fixed bug #64130 (COM obj parameters passed by reference are not updated).
+  . Fixed bug #62474 (com_event_sink crashes on certain arguments). (cmb)
+
+- DOM:
+  . Fixed bug #80268 (loadHTML() truncates at NUL bytes). (cmb)
+
+- FFI:
+  . Fixed bug #79177 (FFI doesn't handle well PHP exceptions within callback).
+    (cmb, Dmitry, Nikita)
+
+- IMAP:
+  . Fixed bug #64076 (imap_sort() does not return FALSE on failure). (cmb)
+  . Fixed bug #76618 (segfault on imap_reopen). (girgias)
+  . Fixed bug #80239 (imap_rfc822_write_address() leaks memory). (cmb)
+  . Fixed minor regression caused by fixing bug #80220. (cmb)
+  . Fixed bug #80242 (imap_mail_compose() segfaults for multipart with rfc822).
     (cmb)
 
-- OPcache:
-  . Fixed bug #80002 (calc free space for new interned string is wrong).
-    (t-matsuno)
-  . Fixed bug #80046 (FREE for SWITCH_STRING optimized away). (Nikita)
-  . Fixed bug #79825 (opcache.file_cache causes SIGSEGV when custom opcode
-    handlers changed). (SammyK)
+- MySQLi:
+  . Fixed bug #79375 (mysqli_store_result does not report error from lock wait
+    timeout). (Kamil Tekiela, Nikita)
+  . Fixed bug #76525 (mysqli::commit does not throw if MYSQLI_REPORT_ERROR
+    enabled and mysqlnd used). (Kamil Tekiela)
+  . Fixed bug #72413 (mysqlnd segfault (fetch_row second parameter
+    typemismatch)). (Kamil Tekiela)
+
+- ODBC:
+  . Fixed bug #44618 (Fetching may rely on uninitialized data). (cmb)
+
+- Opcache:
+  . Fixed bug #79643 (PHP with Opcache crashes when a file with specific name
+    is included). (twosee)
+  . Fixed run-time binding of preloaded dynamically declared function. (Dmitry)
 
 - OpenSSL:
-  . Fixed bug #79601 (Wrong ciphertext/tag in AES-CCM encryption for a 12
-    bytes IV). (CVE-2020-7069) (Jakub Zelenka)
+  . Fixed bug #79983 (openssl_encrypt / openssl_decrypt fail with OCB mode).
+    (Nikita)
 
-- PDO:
-  . Fixed bug #80027 (Terrible performance using $query->fetch on queries with
-    many bind parameters (Matteo)
+- PDO MySQL:
+  . Fixed bug #66528 (No PDOException or errorCode if database becomes
+    unavailable before PDO::commit). (Nikita)
+  . Fixed bug #65825 (PDOStatement::fetch() does not throw exception on broken
+    server connection). (Nikita)
+
+- SNMP:
+  . Fixed bug #70461 (disable md5 code when it is not supported in net-snmp).
+    (Alexander Bergmann, cmb)
 
 - Standard:
-  . Fixed bug #79986 (str_ireplace bug with diacritics characters). (cmb)
-  . Fixed bug #80077 (getmxrr test bug). (Rainer Jung)
-  . Fixed bug #72941 (Modifying bucket->data by-ref has no effect any longer).
-    (cmb)
-  . Fixed bug #80067 (Omitting the port in bindto setting errors). (cmb)]]></releaseNotes>
+  . Fixed bug #80266 (parse_url silently drops port number 0). (cmb, Nikita)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.4.11]" />
+		<dependency id="php" version="[7.4.13]" />
     </dependencies>
   </metadata>
   <files>
