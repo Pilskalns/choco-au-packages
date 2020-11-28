@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>7.4.13</version>
+    <version>8.0.0</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,65 +25,10 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #80280 (ADD_EXTENSION_DEP() fails for ext/standard and ext/date).
-    (cmb)
-  . Fixed bug #80258 (Windows Deduplication Enabled, randon permission errors).
-    (cmb)
-
-- COM:
-  . Fixed bug #62474 (com_event_sink crashes on certain arguments). (cmb)
-
-- DOM:
-  . Fixed bug #80268 (loadHTML() truncates at NUL bytes). (cmb)
-
-- FFI:
-  . Fixed bug #79177 (FFI doesn't handle well PHP exceptions within callback).
-    (cmb, Dmitry, Nikita)
-
-- IMAP:
-  . Fixed bug #64076 (imap_sort() does not return FALSE on failure). (cmb)
-  . Fixed bug #76618 (segfault on imap_reopen). (girgias)
-  . Fixed bug #80239 (imap_rfc822_write_address() leaks memory). (cmb)
-  . Fixed minor regression caused by fixing bug #80220. (cmb)
-  . Fixed bug #80242 (imap_mail_compose() segfaults for multipart with rfc822).
-    (cmb)
-
-- MySQLi:
-  . Fixed bug #79375 (mysqli_store_result does not report error from lock wait
-    timeout). (Kamil Tekiela, Nikita)
-  . Fixed bug #76525 (mysqli::commit does not throw if MYSQLI_REPORT_ERROR
-    enabled and mysqlnd used). (Kamil Tekiela)
-  . Fixed bug #72413 (mysqlnd segfault (fetch_row second parameter
-    typemismatch)). (Kamil Tekiela)
-
-- ODBC:
-  . Fixed bug #44618 (Fetching may rely on uninitialized data). (cmb)
-
-- Opcache:
-  . Fixed bug #79643 (PHP with Opcache crashes when a file with specific name
-    is included). (twosee)
-  . Fixed run-time binding of preloaded dynamically declared function. (Dmitry)
-
-- OpenSSL:
-  . Fixed bug #79983 (openssl_encrypt / openssl_decrypt fail with OCB mode).
-    (Nikita)
-
-- PDO MySQL:
-  . Fixed bug #66528 (No PDOException or errorCode if database becomes
-    unavailable before PDO::commit). (Nikita)
-  . Fixed bug #65825 (PDOStatement::fetch() does not throw exception on broken
-    server connection). (Nikita)
-
-- SNMP:
-  . Fixed bug #70461 (disable md5 code when it is not supported in net-snmp).
-    (Alexander Bergmann, cmb)
-
-- Standard:
-  . Fixed bug #80266 (parse_url silently drops port number 0). (cmb, Nikita)]]></releaseNotes>
+	  <releaseNotes></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[7.4.13]" />
+		<dependency id="php" version="[8.0.0]" />
     </dependencies>
   </metadata>
   <files>
