@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.0.0.20201221</version>
+    <version>8.0.1</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -12,7 +12,7 @@
     <authors>PHP Authors</authors>
     <projectUrl>http://www.php.net/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/php-service/php-service.png</iconUrl>
-    <copyright>2020 &#169; PHP Group</copyright>
+    <copyright>2021 &#169; PHP Group</copyright>
     <licenseUrl>http://php.net/license/index.php</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://git.php.net/</projectSourceUrl>
@@ -25,10 +25,10 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes></releaseNotes>
+	  <releaseNotes><![CDATA[]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.0.0]" />
+		<dependency id="php" version="[8.0.1]" />
     </dependencies>
   </metadata>
   <files>
