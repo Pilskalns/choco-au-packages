@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.0.1</version>
+    <version>8.0.2</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,10 +25,78 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[]]></releaseNotes>
+	  <releaseNotes><![CDATA[- Core:
+  . Fixed bug #80523 (bogus parse error on >4GB source code). (Nikita)
+  . Fixed bug #80384 (filter buffers entire read until file closed). (Adam
+    Seitz, cmb)
+  . Fixed bug #80596 (Invalid union type TypeError in anonymous classes).
+    (Daniil Gentili)
+  . Fixed bug #80617 (GCC throws warning about type narrowing in
+    ZEND_TYPE_INIT_CODE). (Nikita)
+
+- BCMath:
+  . Fixed bug #80545 (bcadd('a', 'a') doesn't throw an exception).
+    (Jens de Nies)
+
+- Curl:
+  . Fixed bug #80595 (Resetting POSTFIELDS to empty array breaks request). (cmb)
+
+- Date:
+  . Fixed bug #80376 (last day of the month causes runway cpu usage). (Derick)
+
+- DOM:
+  . Fixed bug #80537 (Wrong parameter type in DOMElement::removeAttributeNode
+    stub). (Nikita)
+
+- Filter:
+  . Fixed bug #80584 (0x and 0X are considered valid hex numbers by
+    filter_var()). (girgias)
+
+- GMP:
+  . Fixed bug #80560 (Strings containing only a base prefix return 0 object).
+    (girgias)
+
+- Intl:
+  . Fixed bug #80644 (Missing resource causes subsequent get() calls to fail).
+    (Nikita)
+
+- MySQLi:
+  . Fixed bug #67983 (mysqlnd with MYSQLI_OPT_INT_AND_FLOAT_NATIVE fails to
+    interpret bit columns). (Nikita)
+  . Fixed bug #64638 (Fetching resultsets from stored procedure with cursor
+    fails). (Nikita)
+  . Fixed bug #72862 (segfault using prepared statements on stored procedures
+    that use a cursor). (Nikita)
+  . Fixed bug #77935 (Crash in mysqlnd_fetch_stmt_row_cursor when calling an SP
+    with a cursor). (Nikita)
+
+- ODBC:
+  . Fixed bug #80592 (all floats are the same in ODBC parameters). (cmb)
+
+- Opcache:
+  . Fixed bug #80422 (php_opcache.dll crashes when using Apache 2.4 with JIT).
+    (Dmitry)
+
+- PDO_Firebird:
+  . Fixed bug #80521 (Parameters with underscores no longer recognized). (cmb,
+    Simonov Denis)
+
+- Phar:
+  . Fixed bug #76929 (zip-based phar does not respect phar.require_hash).
+    (david at bamsoftware, cmb)
+  . Fixed bug #77565 (Incorrect locator detection in ZIP-based phars). (cmb)
+  . Fixed bug #69279 (Compressed ZIP Phar extractTo() creates garbage files).
+    (cmb)
+
+- Phpdbg:
+  . Reverted fix for bug #76813 (Access violation near NULL on source operand).
+    (cmb)
+
+- SOAP:
+  . Fixed bug #80672 (Null Dereference in SoapClient). (CVE-2021-21702) (cmb, Stas)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.0.1]" />
+		<dependency id="php" version="[8.0.2]" />
     </dependencies>
   </metadata>
   <files>
