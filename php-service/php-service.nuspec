@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.0.3</version>
+    <version>8.0.6</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,61 +25,12 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixed #80706 (mail(): Headers after Bcc headers may be ignored). (cmb)
-
-- DOM:
-  . Fixed bug #80600 (DOMChildNode::remove() doesn't work on CharacterData
-    nodes). (beberlei)
-
-- Gettext:
-  . Fixed bug #53251 (bindtextdomain with null dir doesn't return old value).
-    (cmb)
-
-- MySQLnd:
-  . Fixed bug #78680 (mysqlnd's mysql_clear_password does not transmit
-    null-terminated password). (Daniel Black)
-  . Fixed bug #80713 (SegFault when disabling ATTR_EMULATE_PREPARES and
-    MySQL 8.0). (Nikita)
-
-- MySQLi:
-  . Fixed bug #74779 (x() and y() truncating floats to integers). (cmb)
-
-- Opcache:
-  . Fixed bug #80634 (write_property handler of internal classes is skipped on
-    preloaded JITted code). (Dmitry)
-  . Fixed bug #80682 (opcache doesn't honour pcre.jit option). (Remi)
-  . Fixed bug #80742 (Opcache JIT makes some boolean logic unexpectedly be
-    true). (Dmitry)
-  . Fixed bug #80745 (JIT produces Assert failure and UNKNOWN:0 var_dumps in
-    code involving bitshifts). (Dmitry)
-
-- OpenSSL:
-  . Fixed bug #80747 (Providing RSA key size < 512 generates key that crash
-    PHP). (Nikita)
-
-- Phar:
-  . Fixed bug #75850 (Unclear error message wrt. __halt_compiler() w/o
-    semicolon) (cmb)
-  . Fixed bug #70091 (Phar does not mark UTF-8 filenames in ZIP archives). (cmb)
-  . Fixed bug #53467 (Phar cannot compress large archives). (cmb, lserni)
-
-- Socket:
-  . Fixed bug #80723 (Different sockets compare as equal (regression in 8.0)).
-    (Nikita)
-
-- SPL:
-  . Fixed bug#80719 (Iterating after failed ArrayObject::setIteratorClass()
-    causes Segmentation fault). (Nikita)
-
-- Standard:
-  . Fixed bug #80654 (file_get_contents() maxlen fails above (2**31)-1 bytes).
-    (cmb)
-  . Fixed bug #80718 (ext/standard/dl.c fallback code path with syntax error).
-    (Nikita)]]></releaseNotes>
+	  <releaseNotes><![CDATA[- PDO_pgsql:
+  . Revert "Fixed bug #80892 (PDO::PARAM_INT is treated the same as PDO::PARAM_STR)"
+    from PHP 8.0.5.]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.0.3]" />
+		<dependency id="php" version="[8.0.6]" />
     </dependencies>
   </metadata>
   <files>
