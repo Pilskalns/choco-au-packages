@@ -18,7 +18,7 @@ Invoke-WebRequest "https://nginx.org/keys/mdounin.key" -UseBasicParsing -OutFile
 
 # Get original signature from
 # https://nginx.org/en/download.html
-Invoke-WebRequest "https://nginx.org/download/nginx-1.20.0.zip.asc" -UseBasicParsing -OutFile "$toolsDir\..\bin\nginx-1.20.0.zip.asc"
+Invoke-WebRequest "https://nginx.org/download/nginx-1.20.1.zip.asc" -UseBasicParsing -OutFile "$toolsDir\..\bin\nginx-1.20.1.zip.asc"
 
 ### Preperation
 # Check that we have GPG 
@@ -27,4 +27,4 @@ choco install gpg4win -y | out-null
 ### Verify
 # Import keys and verify ZIP file against the signature
 gpg --import "$toolsDir\..\bin\mdounin.key"
-gpg --verify "$toolsDir\..\bin\nginx-1.20.0.zip.asc" "$toolsDir\..\bin\nginx.zip"
+gpg --verify "$toolsDir\..\bin\nginx-1.20.1.zip.asc" "$toolsDir\..\bin\nginx.zip"

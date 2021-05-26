@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.20.0</version>
+    <version>1.20.1</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,7 +57,11 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) 1.20.x stable branch.]]></releaseNotes>
+	<releaseNotes><![CDATA[*) Security: 1-byte memory overwrite might occur during DNS server
+   response processing if the "resolver" directive was used, allowing an
+   attacker who is able to forge UDP packets from the DNS server to
+   cause worker process crash or, potentially, arbitrary code execution
+   (CVE-2021-23017).]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
