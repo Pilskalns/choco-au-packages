@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.0.6</version>
+    <version>8.0.7</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,12 +25,64 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- PDO_pgsql:
-  . Revert "Fixed bug #80892 (PDO::PARAM_INT is treated the same as PDO::PARAM_STR)"
-    from PHP 8.0.5.]]></releaseNotes>
+	  <releaseNotes><![CDATA[- Core:
+  . Fixed bug #80960 (opendir() warning wrong info when failed on Windows).
+    (cmb)
+  . Fixed bug #67792 (HTTP Authorization schemes are treated as case-sensitive).
+    (cmb)
+  . Fixed bug #80972 (Memory exhaustion on invalid string offset). (girgias)
+
+- FPM:
+  . Fixed bug #65800 (Events port mechanism). (psumbera)
+
+- FTP:
+  . Fixed bug #80901 (Info leak in ftp extension). (cmb)
+  . Fixed bug #79100 (Wrong FTP error messages). (cmb)
+
+- GD:
+  . Fixed bug #81032 (GD install is affected by external libgd installation).
+    (Flavio Heleno, cmb)
+
+- Intl:
+  . Fixed bug #81019 (Unable to clone NumberFormatter after failed parse()).
+    (Nikita)
+
+- MBString:
+  . Fixed bug #81011 (mb_convert_encoding removes references from arrays). (cmb)
+
+- ODBC:
+  . Fixed bug #80460 (ODBC doesn't account for SQL_NO_TOTAL indicator). (cmb)
+
+- Opcache:
+  . Fixed bug #81007 (JIT "not supported" on 32-bit x86 -- build problem?).
+    (Nikita)
+  . Fixed bug #81015 (Opcache optimization assumes wrong part of ternary
+    operator in if-condition). (Nikita)
+  . Fixed bug #81046 (Literal compaction merges non-equal related literals).
+    (Nikita)
+
+- PDO_MySQL:
+  . Fixed bug #81037 (PDO discards error message text from prepared 
+    statement). (Kamil Tekiela)
+
+- PDO_ODBC:
+  . Fixed bug #44643 (bound parameters ignore explicit type definitions). (cmb)
+
+- pgsql:
+  . Fixed php_pgsql_fd_cast() wrt. php_stream_can_cast(). (cmb)
+
+- SPL:
+  . Fixed bug #80933 (SplFileObject::DROP_NEW_LINE is broken for NUL and CR).
+    (cmb, Nikita)
+
+- XMLReader:
+  . Fixed bug #73246 (XMLReader: encoding length not checked). (cmb)
+
+- Zip:
+  . Fixed bug #80863 (ZipArchive::extractTo() ignores references). (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.0.6]" />
+		<dependency id="php" version="[8.0.7]" />
     </dependencies>
   </metadata>
   <files>
