@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.0.7</version>
+    <version>8.0.8</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,63 +26,69 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #80960 (opendir() warning wrong info when failed on Windows).
+  . Fixed bug #81076 (incorrect debug info on Closures with implicit binds).
+    (krakjoe)
+  . Fixed bug #81068 (Double free in realpath_cache_clean()). (Dimitry Andric)
+  . Fixed bug #76359 (open_basedir bypass through adding ".."). (cmb)
+  . Fixed bug #81090 (Typed property performance degradation with .= operator).
+    (Nikita)
+  . Fixed bug #81070 (Integer underflow in memory limit comparison).
+    (Peter van Dommelen)
+  . Fixed bug #81122 (SSRF bypass in FILTER_VALIDATE_URL).
+    (CVE-2021-21705) (cmb)
+
+- Bzip2:
+  . Fixed bug #81092 (fflush before stream_filter_remove corrupts stream).
     (cmb)
-  . Fixed bug #67792 (HTTP Authorization schemes are treated as case-sensitive).
-    (cmb)
-  . Fixed bug #80972 (Memory exhaustion on invalid string offset). (girgias)
 
-- FPM:
-  . Fixed bug #65800 (Events port mechanism). (psumbera)
+- Fileinfo:
+  . Fixed bug #80197 (implicit declaration of function 'magic_stream' is
+    invalid). (Nikita)
 
-- FTP:
-  . Fixed bug #80901 (Info leak in ftp extension). (cmb)
-  . Fixed bug #79100 (Wrong FTP error messages). (cmb)
-
-- GD:
-  . Fixed bug #81032 (GD install is affected by external libgd installation).
-    (Flavio Heleno, cmb)
-
-- Intl:
-  . Fixed bug #81019 (Unable to clone NumberFormatter after failed parse()).
+- GMP:
+  . Fixed bug #81119 (GMP operators throw errors with wrong parameter names).
     (Nikita)
 
-- MBString:
-  . Fixed bug #81011 (mb_convert_encoding removes references from arrays). (cmb)
-
-- ODBC:
-  . Fixed bug #80460 (ODBC doesn't account for SQL_NO_TOTAL indicator). (cmb)
+- OCI8:
+  . Fixed bug #81088 (error in regression test for oci_fetch_object() and
+    oci_fetch_array()). (MÃ¡tÃ©)
 
 - Opcache:
-  . Fixed bug #81007 (JIT "not supported" on 32-bit x86 -- build problem?).
-    (Nikita)
-  . Fixed bug #81015 (Opcache optimization assumes wrong part of ternary
-    operator in if-condition). (Nikita)
-  . Fixed bug #81046 (Literal compaction merges non-equal related literals).
-    (Nikita)
+  . Fixed bug #81051 (Broken property type handling after incrementing
+    reference). (Dmitry)
+  . Fixed bug #80968 (JIT segfault with return from required file). (Dmitry)
 
-- PDO_MySQL:
-  . Fixed bug #81037 (PDO discards error message text from prepared 
-    statement). (Kamil Tekiela)
+- OpenSSL:
+  . Fixed bug #76694 (native Windows cert verification uses CN as sever name).
+    (cmb)
 
-- PDO_ODBC:
-  . Fixed bug #44643 (bound parameters ignore explicit type definitions). (cmb)
+- MySQLnd:
+  . Fixed bug #80761 (PDO uses too much memory). (Nikita)
 
-- pgsql:
-  . Fixed php_pgsql_fd_cast() wrt. php_stream_can_cast(). (cmb)
+- PDO_Firebird:
+   . Fixed bug #76448 (Stack buffer overflow in firebird_info_cb).
+    (CVE-2021-21704) (cmb)
+   . Fixed bug #76449 (SIGSEGV in firebird_handle_doer).
+    (CVE-2021-21704) (cmb)
+   . Fixed bug #76450 (SIGSEGV in firebird_stmt_execute).
+    (CVE-2021-21704) (cmb)
+   . Fixed bug #76452 (Crash while parsing blob data in firebird_fetch_blob).
+    (CVE-2021-21704) (cmb)
 
-- SPL:
-  . Fixed bug #80933 (SplFileObject::DROP_NEW_LINE is broken for NUL and CR).
-    (cmb, Nikita)
+- readline:
+  . Fixed bug #72998 (invalid read in readline completion). (krakjoe)
 
-- XMLReader:
-  . Fixed bug #73246 (XMLReader: encoding length not checked). (cmb)
+- Standard:
+  . Fixed bug #81048 (phpinfo(INFO_VARIABLES) "Array to string conversion").
+    (cmb)
+  . Fixed bug #77627 (method_exists on Closure::__invoke inconsistency).
+    (krakjoe)
 
-- Zip:
-  . Fixed bug #80863 (ZipArchive::extractTo() ignores references). (cmb)]]></releaseNotes>
+- Windows:
+  . Fixed bug #81120 (PGO data for main PHP DLL are not used). (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.0.7]" />
+		<dependency id="php" version="[8.0.8]" />
     </dependencies>
   </metadata>
   <files>
