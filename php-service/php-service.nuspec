@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.0.8</version>
+    <version>8.0.10</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,69 +26,72 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #81076 (incorrect debug info on Closures with implicit binds).
-    (krakjoe)
-  . Fixed bug #81068 (Double free in realpath_cache_clean()). (Dimitry Andric)
-  . Fixed bug #76359 (open_basedir bypass through adding ".."). (cmb)
-  . Fixed bug #81090 (Typed property performance degradation with .= operator).
-    (Nikita)
-  . Fixed bug #81070 (Integer underflow in memory limit comparison).
-    (Peter van Dommelen)
-  . Fixed bug #81122 (SSRF bypass in FILTER_VALIDATE_URL).
-    (CVE-2021-21705) (cmb)
-
-- Bzip2:
-  . Fixed bug #81092 (fflush before stream_filter_remove corrupts stream).
+  . Fixed bug #72595 (php_output_handler_append illegal write access). (cmb)
+  . Fixed bug #66719 (Weird behaviour when using get_called_class() with
+    call_user_func()). (Nikita)
+  . Fixed bug #81305 (Built-in Webserver Drops Requests With "Upgrade" Header).
     (cmb)
 
-- Fileinfo:
-  . Fixed bug #80197 (implicit declaration of function 'magic_stream' is
-    invalid). (Nikita)
+- BCMath:
+  . Fixed bug #78238 (BCMath returns "-0"). (cmb)
 
-- GMP:
-  . Fixed bug #81119 (GMP operators throw errors with wrong parameter names).
-    (Nikita)
+- CGI:
+  . Fixed bug #80849 (HTTP Status header truncation). (cmb)
 
-- OCI8:
-  . Fixed bug #81088 (error in regression test for oci_fetch_object() and
-    oci_fetch_array()). (MÃ¡tÃ©)
+- Date:
+  . Fixed bug #64975 (Error parsing when AM/PM not at the end). (Derick)
+  . Fixed bug #78984 (DateTimeZone accepting invalid UTC timezones). (Derick)
+  . Fixed bug #79580 (date_create_from_format misses leap year). (Derick)
+  . Fixed bug #80409 (DateTime::modify() loses time with 'weekday' parameter).
+    (Derick)
+
+- GD:
+  . Fixed bug #51498 (imagefilledellipse does not work for large circles). (cmb)
+
+- MySQLi:
+  . Fixed bug #74544 (Integer overflow in mysqli_real_escape_string()). (cmb,
+    johannes)
 
 - Opcache:
-  . Fixed bug #81051 (Broken property type handling after incrementing
-    reference). (Dmitry)
-  . Fixed bug #80968 (JIT segfault with return from required file). (Dmitry)
+  . Fixed bug #81225 (Wrong result with pow operator with JIT enabled).
+    (Dmitry)
+  . Fixed bug #81249 (Intermittent property assignment failure with JIT
+    enabled). (Dmitry)
+  . Fixed bug #81206 (Multiple PHP processes crash with JIT enabled). (cmb,
+    Nikita)
+  . Fixed bug #81272 (Segfault in var[] after array_slice with JIT). (Nikita)
+  . Fixed Bug #81255 (Memory leak in PHPUnit with functional JIT). (Dmitry)
+  . Fixed Bug #80959 (infinite loop in building cfg during JIT compilation)
+    (Nikita, Dmitry)
+  . Fixed bug #81226 (Integer overflow behavior is different with JIT
+    enabled). (Dmitry)
 
 - OpenSSL:
-  . Fixed bug #76694 (native Windows cert verification uses CN as sever name).
-    (cmb)
+  . Fixed bug #81327 (Error build openssl extension on php 7.4.22). (cmb)
 
-- MySQLnd:
-  . Fixed bug #80761 (PDO uses too much memory). (Nikita)
+- PDO_ODBC:
+  . Fixed bug #81252 (PDO_ODBC doesn't account for SQL_NO_TOTAL). (cmb)
 
-- PDO_Firebird:
-   . Fixed bug #76448 (Stack buffer overflow in firebird_info_cb).
-    (CVE-2021-21704) (cmb)
-   . Fixed bug #76449 (SIGSEGV in firebird_handle_doer).
-    (CVE-2021-21704) (cmb)
-   . Fixed bug #76450 (SIGSEGV in firebird_stmt_execute).
-    (CVE-2021-21704) (cmb)
-   . Fixed bug #76452 (Crash while parsing blob data in firebird_fetch_blob).
-    (CVE-2021-21704) (cmb)
+- Phar:
+  . Fixed bug #81211: Symlinks are followed when creating PHAR archive (cmb)
 
-- readline:
-  . Fixed bug #72998 (invalid read in readline completion). (krakjoe)
+- Shmop:
+  . Fixed bug #81283 (shmop can't read beyond 2147483647 bytes). (cmb, Nikita)
+
+- SimpleXML:
+  . Fixed bug #81325 (Segfault in zif_simplexml_import_dom). (remi)
 
 - Standard:
-  . Fixed bug #81048 (phpinfo(INFO_VARIABLES) "Array to string conversion").
-    (cmb)
-  . Fixed bug #77627 (method_exists on Closure::__invoke inconsistency).
-    (krakjoe)
+  . Fixed bug #72146 (Integer overflow on substr_replace). (cmb)
+  . Fixed bug #81265 (getimagesize returns 0 for 256px ICO images).
+    (George Dietrich)
+  . Fixed bug #74960 (Heap buffer overflow via str_repeat). (cmb, Dmitry)
 
-- Windows:
-  . Fixed bug #81120 (PGO data for main PHP DLL are not used). (cmb)]]></releaseNotes>
+- Streams:
+  . Fixed bug #81294 (Segfault when removing a filter). (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.0.8]" />
+		<dependency id="php" version="[8.0.10]" />
     </dependencies>
   </metadata>
   <files>
