@@ -15,7 +15,7 @@
     <copyright>2022 &#169; PHP Group</copyright>
     <licenseUrl>http://php.net/license/index.php</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectSourceUrl>https://git.php.net/</projectSourceUrl>
+    <projectSourceUrl>https://github.com/php/php-src</projectSourceUrl>
     <docsUrl>http://php.net/manual/en/</docsUrl>
     <bugTrackerUrl>https://bugs.php.net/</bugTrackerUrl>
     <tags>php web service nssm admin</tags>
