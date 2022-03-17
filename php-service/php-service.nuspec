@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.1.3</version>
+    <version>8.1.4</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,42 +26,42 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug #81430 (Attribute instantiation leaves dangling pointer).
-    (beberlei)
-  . Fixed bug GH-7896 (Environment vars may be mangled on Windows). (cmb)
-  . Fixed bug GH-7883 (Segfault when INI file is not readable). (Remi)
+  . Fixed Haiku ZTS build. (David Carlier)
+  . Fixed bug GH-8059 arginfo not regenerated for extension. (Remi)
+  . Fixed bug GH-8083 Segfault when dumping uncalled fake closure with static
+    variables. (ilutov)
+  . Fixed bug GH-7958 (Nested CallbackFilterIterator is leaking memory). (cmb)
+  . Fixed bug GH-8074 (Wrong type inference of range() result). (cmb)
+  . Fixed bug GH-8140 (Wrong first class callable by name optimization). (cmb)
+  . Fixed bug GH-8082 (op_arrays with temporary run_time_cache leak memory
+    when observed). (Bob)
 
-- Filter:
-  . Fix #81708: UAF due to php_filter_float() failing for ints. (CVE-2021-21708) (cmb)
-
-- FFI:
-  . Fixed bug GH-7867 (FFI::cast() from pointer to array is broken). (cmb,
-    dmitry)
+- GD:
+  . Fixed libpng warning when loading interlaced images. (Brett)
 
 - FPM:
-  . Fixed memory leak on invalid port. (David Carlier)
-  . Fixed bug GH-7842 (Invalid OpenMetrics response format returned by FPM
-    status page. (Stefano Arlandini)
+  . Fixed bug #76109 (Unsafe access to fpm scoreboard).
+    (Till Backhaus, Jakub Zelenka)
+
+- Iconv:
+  . Fixed bug GH-7953 (ob_clean() only does not set Content-Encoding). (cmb)
+  . Fixed bug GH-7980 (Unexpected result for iconv_mime_decode). (cmb)
 
 - MBString:
-  . Fixed bug GH-7902 (mb_send_mail may delimit headers with LF only). (cmb)
+  . Fixed bug GH-8128 (mb_check_encoding wrong result for 7bit). (alexdowad)
 
 - MySQLnd:
-  . Fixed bug GH-7972 (MariaDB version prefix 5.5.5- is not stripped). (Kamil Tekiela)
+  . Fixed bug GH-8058 (NULL pointer dereference in mysqlnd package). (Kamil Tekiela)
 
-- pcntl:
-  . Fixed pcntl_rfork build for DragonFlyBSD. (David Carlier)
+- Reflection:
+  . Fixed bug GH-8080 (ReflectionClass::getConstants() depends on def. order).
+    (cmb)
 
-- Sockets:
-  . Fixed bug GH-7978 (sockets extension compilation errors). (David Carlier)
-
-- Standard:
-  . Fixed bug GH-7899 (Regression in unpack for negative int value). (Remi)
-  . Fixed bug GH-7875 (mails are sent even if failure to log throws exception).
-    (cmb)]]></releaseNotes>
+- Zlib:
+  . Fixed bug GH-7953 (ob_clean() only does not set Content-Encoding). (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.1.3]" />
+		<dependency id="php" version="[8.1.4]" />
     </dependencies>
   </metadata>
   <files>
