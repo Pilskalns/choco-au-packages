@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.1.4</version>
+    <version>8.1.5</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,42 +26,51 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed Haiku ZTS build. (David Carlier)
-  . Fixed bug GH-8059 arginfo not regenerated for extension. (Remi)
-  . Fixed bug GH-8083 Segfault when dumping uncalled fake closure with static
-    variables. (ilutov)
-  . Fixed bug GH-7958 (Nested CallbackFilterIterator is leaking memory). (cmb)
-  . Fixed bug GH-8074 (Wrong type inference of range() result). (cmb)
-  . Fixed bug GH-8140 (Wrong first class callable by name optimization). (cmb)
-  . Fixed bug GH-8082 (op_arrays with temporary run_time_cache leak memory
-    when observed). (Bob)
+  . Fixed bug GH-8176 (Enum values in property initializers leak). (Bob)
+  . Fixed freeing of internal attribute arguments. (Bob)
+  . Fixed bug GH-8070 (memory leak of internal function attribute hash).
+    (Tim DÃ¼sterhus)
+  . Fixed bug GH-8160 (ZTS support on Alpine is broken). (Michael VoÅ™Ã­Å¡ek)
 
-- GD:
-  . Fixed libpng warning when loading interlaced images. (Brett)
+- Filter:
+  . Fixed signedness confusion in php_filter_validate_domain(). (cmb)
 
-- FPM:
-  . Fixed bug #76109 (Unsafe access to fpm scoreboard).
-    (Till Backhaus, Jakub Zelenka)
-
-- Iconv:
-  . Fixed bug GH-7953 (ob_clean() only does not set Content-Encoding). (cmb)
-  . Fixed bug GH-7980 (Unexpected result for iconv_mime_decode). (cmb)
+- Intl:
+  . Fixed bug GH-8115 (Can't catch arg type deprecation when instantiating Intl
+    classes). (ilutov)
+  . Fixed bug GH-8142 (Compilation error on cygwin). (David Carlier)
+  . Fixed bug GH-7734 (Fix IntlPartsIterator key off-by-one error and first
+    key). (ilutov)
 
 - MBString:
-  . Fixed bug GH-8128 (mb_check_encoding wrong result for 7bit). (alexdowad)
-
-- MySQLnd:
-  . Fixed bug GH-8058 (NULL pointer dereference in mysqlnd package). (Kamil Tekiela)
-
-- Reflection:
-  . Fixed bug GH-8080 (ReflectionClass::getConstants() depends on def. order).
+  . Fixed bug GH-8208 (mb_encode_mimeheader: $indent functionality broken).
     (cmb)
 
-- Zlib:
-  . Fixed bug GH-7953 (ob_clean() only does not set Content-Encoding). (cmb)]]></releaseNotes>
+- MySQLi:
+  . Fixed bug GH-8068 (mysqli_fetch_object creates inaccessible properties).
+    (cmb)
+
+- Pcntl:
+  . Fixed bug GH-8142 (Compilation error on cygwin). (David Carlier)
+
+- PgSQL:
+  . Fixed result_type related stack corruption on LLP64 architectures. (cmb)
+  . Fixed bug GH-8253 (pg_insert() fails for references). (cmb)
+
+- Sockets:
+  . Fixed Solaris builds. (David Carlier)
+
+- SPL:
+  . Fixed bug GH-8121 (SplFileObject - seek and key with csv file inconsistent).
+    (cmb)
+  . Fixed bug GH-8192 (Cannot override DirectoryIterator::current() without
+    return typehint in 8.1). (Nikita)
+
+- Standard:
+  . Fixed bug GH-8048 (Force macOS to use statfs). (risner)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.1.4]" />
+		<dependency id="php" version="[8.1.5]" />
     </dependencies>
   </metadata>
   <files>
