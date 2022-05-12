@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.1.5</version>
+    <version>8.1.6</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -26,51 +26,64 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
 	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug GH-8176 (Enum values in property initializers leak). (Bob)
-  . Fixed freeing of internal attribute arguments. (Bob)
-  . Fixed bug GH-8070 (memory leak of internal function attribute hash).
-    (Tim DÃ¼sterhus)
-  . Fixed bug GH-8160 (ZTS support on Alpine is broken). (Michael VoÅ™Ã­Å¡ek)
+  . Fixed bug GH-8310 (Registry settings are no longer recognized). (cmb)
+  . Fixed potential race condition during resource ID allocation. (ryancaicse)
+  . Fixed bug GH-8133 (Preloading of constants containing arrays with enums
+    segfaults). (ilutov)
+  . Fixed Haiku ZTS builds. (David Carlier)
 
-- Filter:
-  . Fixed signedness confusion in php_filter_validate_domain(). (cmb)
+- Date:
+  . Fixed bug GH-7752 (DateTimeZone::getTransitions() returns insufficient
+    data). (Derick)
+  . Fixed bug GH-8108 (Timezone doesn't work as intended). (Derick)
+  . Fixed bug #81660 (DateTimeZone::getTransitions() returns invalid data).
+    (Derick)
+  . Fixed bug GH-8289 (Exceptions thrown within a yielded from iterator are
+    not rethrown into the generator). (Bob)
+
+- FFI:
+  . Fixed bug GH-8433 (Assigning function pointers to structs in FFI leaks).
+    (Bob)
+
+- FPM:
+  . Fixed bug #76003 (FPM /status reports wrong number of active processe).
+    (Jakub Zelenka)
+  . Fixed bug #77023 (FPM cannot shutdown processes). (Jakub Zelenka)
+  . Fixed comment in kqueue remove callback log message. (David Carlier)
+
+- Hash:
+  . Fixed bug #81714 (segfault when serializing finalized HashContext). (cmb)
+
+- Iconv:
+  . Fixed bug GH-8218 (ob_end_clean does not reset Content-Encoding header).
+    (cmb)
 
 - Intl:
-  . Fixed bug GH-8115 (Can't catch arg type deprecation when instantiating Intl
-    classes). (ilutov)
-  . Fixed bug GH-8142 (Compilation error on cygwin). (David Carlier)
-  . Fixed bug GH-7734 (Fix IntlPartsIterator key off-by-one error and first
-    key). (ilutov)
+  . Fixed bug GH-8364 (msgfmt_format $values may not support references). (cmb)
 
 - MBString:
-  . Fixed bug GH-8208 (mb_encode_mimeheader: $indent functionality broken).
-    (cmb)
+  . Number of error markers emitted for invalid UTF-8 text matches WHATWG specification.
+    This is a return to the behavior of PHP 8.0 and earlier. (alexdowad)
 
 - MySQLi:
-  . Fixed bug GH-8068 (mysqli_fetch_object creates inaccessible properties).
+  . Fixed bug GH-8267 (MySQLi uses unsupported format specifier on Windows).
     (cmb)
-
-- Pcntl:
-  . Fixed bug GH-8142 (Compilation error on cygwin). (David Carlier)
-
-- PgSQL:
-  . Fixed result_type related stack corruption on LLP64 architectures. (cmb)
-  . Fixed bug GH-8253 (pg_insert() fails for references). (cmb)
-
-- Sockets:
-  . Fixed Solaris builds. (David Carlier)
 
 - SPL:
-  . Fixed bug GH-8121 (SplFileObject - seek and key with csv file inconsistent).
+  . Fixed bug GH-8366 (ArrayIterator may leak when calling __construct()).
     (cmb)
-  . Fixed bug GH-8192 (Cannot override DirectoryIterator::current() without
-    return typehint in 8.1). (Nikita)
+  . Fixed bug GH-8273 (SplFileObject: key() returns wrong value). (Girgias)
 
-- Standard:
-  . Fixed bug GH-8048 (Force macOS to use statfs). (risner)]]></releaseNotes>
+- Streams:
+  . Fixed php://temp does not preserve file-position when switched to temporary
+    file. (Bernd HolzmÃ¼ller)
+
+- zlib:
+  . Fixed bug GH-8218 (ob_end_clean does not reset Content-Encoding header).
+    (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.1.5]" />
+		<dependency id="php" version="[8.1.6]" />
     </dependencies>
   </metadata>
   <files>
