@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.21.4-mainline</version>
+    <version>1.21.6-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -12,7 +12,7 @@
     <authors>Igor Sysoev</authors>
     <projectUrl>http://nginx.org/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/nginx-service/nginx-service.png</iconUrl>
-    <copyright>2021 &#169; Nginx, Inc.</copyright>
+    <copyright>2022 &#169; Nginx, Inc.</copyright>
     <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://trac.nginx.org/nginx/browser</projectSourceUrl>
@@ -57,39 +57,13 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Change: support for NPN instead of ALPN to establish HTTP/2
-   connections has been removed.
+	<releaseNotes><![CDATA[*) Bugfix: when using EPOLLEXCLUSIVE on Linux client connections were
+   unevenly distributed among worker processes.
 
-*) Change: now nginx rejects SSL connections if ALPN is used by the
-   client, but no supported protocols can be negotiated.
+*) Bugfix: nginx returned the "Connection: keep-alive" header line in
+   responses during graceful shutdown of old worker processes.
 
-*) Change: the default value of the "sendfile_max_chunk" directive was
-   changed to 2 megabytes.
-
-*) Feature: the "proxy_half_close" directive in the stream module.
-
-*) Feature: the "ssl_alpn" directive in the stream module.
-
-*) Feature: the $ssl_alpn_protocol variable.
-
-*) Feature: support for SSL_sendfile() when using OpenSSL 3.0.
-
-*) Feature: the "mp4_start_key_frame" directive in the
-   ngx_http_mp4_module.
-   Thanks to Tracey Jaquith.
-
-*) Bugfix: in the $content_length variable when using chunked transfer
-   encoding.
-
-*) Bugfix: after receiving a response with incorrect length from a
-   proxied backend nginx might nevertheless cache the connection.
-   Thanks to Awdhesh Mathpal.
-
-*) Bugfix: invalid headers from backends were logged at the "info" level
-   instead of "error"; the bug had appeared in 1.21.1.
-
-*) Bugfix: requests might hang when using HTTP/2 and the "aio_write"
-   directive.]]></releaseNotes>
+*) Bugfix: in the "ssl_session_ticket_key" when using TLSv1.3.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
