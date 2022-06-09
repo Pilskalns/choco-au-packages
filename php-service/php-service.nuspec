@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.1.6</version>
+    <version>8.1.7</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,65 +25,63 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug GH-8310 (Registry settings are no longer recognized). (cmb)
-  . Fixed potential race condition during resource ID allocation. (ryancaicse)
-  . Fixed bug GH-8133 (Preloading of constants containing arrays with enums
-    segfaults). (ilutov)
-  . Fixed Haiku ZTS builds. (David Carlier)
+	  <releaseNotes><![CDATA[- CLI:
+  . Fixed bug GH-8575 (CLI closes standard streams too early). (Levi Morrison)
 
 - Date:
-  . Fixed bug GH-7752 (DateTimeZone::getTransitions() returns insufficient
-    data). (Derick)
-  . Fixed bug GH-8108 (Timezone doesn't work as intended). (Derick)
-  . Fixed bug #81660 (DateTimeZone::getTransitions() returns invalid data).
-    (Derick)
-  . Fixed bug GH-8289 (Exceptions thrown within a yielded from iterator are
-    not rethrown into the generator). (Bob)
-
-- FFI:
-  . Fixed bug GH-8433 (Assigning function pointers to structs in FFI leaks).
-    (Bob)
+  . Fixed bug #51934 (strtotime plurals / incorrect time). (Derick)
+  . Fixed bug #51987 (Datetime fails to parse an ISO 8601 ordinal date
+    (extended format)). (Derick)
+  . Fixed bug #66019 (DateTime object does not support short ISO 8601 time
+    format - YYYY-MM-DDTHH) (cmb, Derick)
+  . Fixed bug #68549 (Timezones and offsets are not properly used when working
+    with dates) (Derick, Roel Harbers)
+  . Fixed bug #81565 (date parsing fails when provided with timezones including
+    seconds). (Derick)
+  . Fixed bug GH-7758 (Problems with negative timestamps and fractions).
+    (Derick, Ilija)
 
 - FPM:
-  . Fixed bug #76003 (FPM /status reports wrong number of active processe).
-    (Jakub Zelenka)
-  . Fixed bug #77023 (FPM cannot shutdown processes). (Jakub Zelenka)
-  . Fixed comment in kqueue remove callback log message. (David Carlier)
+  . Fixed ACL build check on MacOS. (David Carlier)
+  . Fixed bug #72185: php-fpm writes empty fcgi record causing nginx 502.
+    (Jakub Zelenka, loveharmful)
 
-- Hash:
-  . Fixed bug #81714 (segfault when serializing finalized HashContext). (cmb)
+- mysqlnd:
+  . Fixed bug #81719: mysqlnd/pdo password buffer overflow. (CVE-2022-31626)
+    (c dot fol at ambionics dot io)
 
-- Iconv:
-  . Fixed bug GH-8218 (ob_end_clean does not reset Content-Encoding header).
-    (cmb)
+- OPcache:
+  . Fixed bug GH-8461 (tracing JIT crash after function/method change).
+    (Arnaud, Dmitry)
 
-- Intl:
-  . Fixed bug GH-8364 (msgfmt_format $values may not support references). (cmb)
+- OpenSSL:
+  . Fixed bug #79589 (error:14095126:SSL routines:ssl3_read_n:unexpected eof
+    while reading). (Jakub Zelenka)
 
-- MBString:
-  . Number of error markers emitted for invalid UTF-8 text matches WHATWG specification.
-    This is a return to the behavior of PHP 8.0 and earlier. (alexdowad)
+- Pcntl:
+  . Fixed Haiku build. (David Carlier)
 
-- MySQLi:
-  . Fixed bug GH-8267 (MySQLi uses unsupported format specifier on Windows).
-    (cmb)
+- pgsql
+  . Fixed bug #81720: Uninitialized array in pg_query_params().
+    (CVE-2022-31625) (cmb)
+
+- Soap:
+  . Fixed bug GH-8578 (Error on wrong parameter on SoapHeader constructor).
+    (robertnisipeanu)
+  . Fixed bug GH-8538 (SoapClient may strip parts of nmtokens). (cmb)
 
 - SPL:
-  . Fixed bug GH-8366 (ArrayIterator may leak when calling __construct()).
-    (cmb)
-  . Fixed bug GH-8273 (SplFileObject: key() returns wrong value). (Girgias)
+  . Fixed bug GH-8235 (iterator_count() may run indefinitely). (cmb)
 
-- Streams:
-  . Fixed php://temp does not preserve file-position when switched to temporary
-    file. (Bernd HolzmÃ¼ller)
+- Standard:
+  . Fixed bug GH-8185 (Crash during unloading of extension after dl() in ZTS).
+    (Arnaud)
 
-- zlib:
-  . Fixed bug GH-8218 (ob_end_clean does not reset Content-Encoding header).
-    (cmb)]]></releaseNotes>
+- Zip:
+  . Fixed type for index in ZipArchive::replaceFile. (Martin Rehberger)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.1.6]" />
+		<dependency id="php" version="[8.1.7]" />
     </dependencies>
   </metadata>
   <files>
