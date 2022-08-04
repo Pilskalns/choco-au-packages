@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.1.8</version>
+    <version>8.1.9</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,76 +25,50 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug GH-8338 (Intel CET is disabled unintentionally). (Chen, Hu)
-  . Fixed leak in Enum::from/tryFrom for internal enums when using JIT (ilutov)
-  . Fixed calling internal methods with a static return type from
-    extension code. (Sara)
-  . Fixed bug GH-8655 (Casting an object to array does not unwrap refcount=1
-    references). (Nicolas Grekas)
-  . Fixed potential use after free in php_binary_init(). (Heiko Weber)
+	  <releaseNotes><![CDATA[- CLI:
+  . Fixed potential overflow for the builtin server via the PHP_CLI_SERVER_WORKERS
+    environment variable. (yiyuaner)
+  . Fixed GH-8952 (Intentionally closing std handles no longer possible).
+    (Arnaud, cmb)
 
-- CLI:
-  . Fixed GH-8827 (Intentionally closing std handles no longer possible). (cmb)
-
-- COM:
-  . Fixed bug GH-8778 (Integer arithmethic with large number variants fails).
-    (cmb)
-
-- Curl:
-  . Fixed CURLOPT_TLSAUTH_TYPE is not treated as a string option. (Pierrick)
+- Core:
+  . Fixed bug GH-8923 (error_log on Windows can hold the file write lock). (cmb)
+  . Fixed bug GH-8995 (WeakMap object reference offset causing TypeError).
+    (Tobias Bachert)
 
 - Date:
-  . Fixed bug #72963 (Null-byte injection in CreateFromFormat and related
-    functions). (Derick)
-  . Fixed bug #74671 (DST timezone abbreviation has incorrect offset). (Derick)
-  . Fixed bug #77243 (Weekdays are calculated incorrectly for negative years).
+  . Fixed bug #80047 (DatePeriod doesn't warn with custom DateTimeImmutable).
     (Derick)
-  . Fixed bug #78139 (timezone_open accepts invalid timezone string argument).
-    (Derick)
-
-- Fileinfo:
-  . Fixed bug #81723 (Heap buffer overflow in finfo_buffer). (CVE-2022-31627)
-    (cmb)
 
 - FPM:
-  . Fixed bug #67764 (fpm: syslog.ident don't work). (Jakub Zelenka)
+  . Fixed zlog message prepend, free on incorrect address. (Heiko Weber)
+  . Fixed possible double free on configuration loading failure. (Heiko Weber).
 
 - GD:
-  . Fixed imagecreatefromavif() memory leak. (cmb)
+  . Fixed bug GH-8848 (imagecopyresized() error refers to the wrong argument).
+    (cmb)
 
-- MBString:
-  . mb_detect_encoding recognizes all letters in Czech alphabet (alexdowad)
-  . mb_detect_encoding recognizes all letters in Hungarian alphabet (alexdowad)
-  . Fixed bug GH-8685 (pcre not ready at mbstring startup). (Remi)
-  . Backwards-compatible mappings for 0x5C/0x7E in Shift-JIS are restored,
-    after they had been changed in 8.1.0. (Alex Dowad)
-
-- ODBC:
-  . Fixed handling of single-key connection strings. (Calvin Buckley)
+- Intl:
+  . Fixed build for ICU 69.x and onwards. (David Carlier)
 
 - OPcache:
-  . Fixed bug GH-8591 (tracing JIT crash after private instance method change).
-    (Arnaud, Dmitry, Oleg Stepanischev)
+  . Fixed bug GH-8847 (PHP hanging infinitly at 100% cpu when check php
+    syntaxe of a valid file). (Dmitry)
+  . Fixed bug GH-8030 (Segfault with JIT and large match/switch statements).
+    (Arnaud)
 
-- OpenSSL:
-  . Fixed bug #50293 (Several openssl functions ignore the VCWD).
-    (Jakub Zelenka, cmb)
-  . Fixed bug #81713 (NULL byte injection in several OpenSSL functions working
-    with certificates). (Jakub Zelenka)
+- Reflection:
+  . Fixed bug GH-8943 (Fixed Reflection::getModifiersNames() with readonly
+    modifier). (Pierrick)
 
-- PDO_ODBC:
-  . Fixed handling of single-key connection strings. (Calvin Buckley)
-
-- SPL:
-  . Fixed bug GH-8563 (Different results for seek() on SplFileObject and SplTempFileObject). (Girgias)
-
-- Zip:
-  . Fixed bug GH-8781 (ZipArchive::close deletes zip file without updating stat
-    cache). (Remi)]]></releaseNotes>
+- Standard:
+  . Fixed the crypt_sha256/512 api build with clang > 12. (David Carlier)
+  . Uses CCRandomGenerateBytes instead of arc4random_buf on macOs. (David Carlier).
+  . Fixed bug GH-9017 (php_stream_sock_open_from_socket could return NULL).
+    (Heiko Weber)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.1.8]" />
+		<dependency id="php" version="[8.1.9]" />
     </dependencies>
   </metadata>
   <files>
