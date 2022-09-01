@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.1.9</version>
+    <version>8.1.10</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,50 +25,57 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- CLI:
-  . Fixed potential overflow for the builtin server via the PHP_CLI_SERVER_WORKERS
-    environment variable. (yiyuaner)
-  . Fixed GH-8952 (Intentionally closing std handles no longer possible).
-    (Arnaud, cmb)
-
-- Core:
-  . Fixed bug GH-8923 (error_log on Windows can hold the file write lock). (cmb)
-  . Fixed bug GH-8995 (WeakMap object reference offset causing TypeError).
-    (Tobias Bachert)
+	  <releaseNotes><![CDATA[- Core:
+  . Fixed --CGI-- support of run-tests.php. (cmb)
+  . Fixed incorrect double to long casting in latest clang. (zeriyoshi)
+  . Fixed bug GH-9266 (GC root buffer keeps growing when dtors are present).
+    (Michael OlsÌŒavskyÌ)
 
 - Date:
-  . Fixed bug #80047 (DatePeriod doesn't warn with custom DateTimeImmutable).
-    (Derick)
+  . Fixed bug GH-8730 (DateTime::diff miscalculation is same time zone of
+    different type). (Derick)
+  . Fixed bug GH-8964 (DateTime object comparison after applying delta less
+    than 1 second). (Derick)
+  . Fixed bug GH-9106: (DateInterval 1.5s added to DateTimeInterface is rounded
+    down since PHP 8.1.0). (Derick)
+  . Fixed bug #81263 (Wrong result from DateTimeImmutable::diff). (Derick)
 
-- FPM:
-  . Fixed zlog message prepend, free on incorrect address. (Heiko Weber)
-  . Fixed possible double free on configuration loading failure. (Heiko Weber).
+- DBA:
+  . Fixed LMDB driver memory leak on DB creation failure (Girgias)
+  . Fixed bug GH-9155 (dba_open("non-existing", "c-", "flatfile") segfaults)
+    (cmb)
 
-- GD:
-  . Fixed bug GH-8848 (imagecopyresized() error refers to the wrong argument).
+- IMAP:
+  . Fixed bug GH-9309 (Segfault when connection is used after imap_close()).
     (cmb)
 
 - Intl:
-  . Fixed build for ICU 69.x and onwards. (David Carlier)
+  . Fixed IntlDateFormatter::formatObject() parameter type. (Gert de Pagter)
+
+- MBString:
+  . Fixed bug GH-9008 (mb_detect_encoding(): wrong results with null $encodings).
+    (cmb)
 
 - OPcache:
-  . Fixed bug GH-8847 (PHP hanging infinitly at 100% cpu when check php
-    syntaxe of a valid file). (Dmitry)
-  . Fixed bug GH-8030 (Segfault with JIT and large match/switch statements).
-    (Arnaud)
+  . Fixed bug GH-9033 (Loading blacklist file can fail due to negative length).
+    (cmb)
+  . Fixed bug GH-9164 (Segfault in zend_accel_class_hash_copy).
+    (Arnaud, Sergei Turchanov)
 
-- Reflection:
-  . Fixed bug GH-8943 (Fixed Reflection::getModifiersNames() with readonly
-    modifier). (Pierrick)
+- PDO_SQLite:
+  . Fixed bug GH-9032 (SQLite3 authorizer crashes on NULL values). (cmb)
 
-- Standard:
-  . Fixed the crypt_sha256/512 api build with clang > 12. (David Carlier)
-  . Uses CCRandomGenerateBytes instead of arc4random_buf on macOs. (David Carlier).
-  . Fixed bug GH-9017 (php_stream_sock_open_from_socket could return NULL).
-    (Heiko Weber)]]></releaseNotes>
+- SQLite3:
+  . Fixed bug GH-9032 (SQLite3 authorizer crashes on NULL values). (cmb)
+
+- Streams:
+  . Fixed bug GH-8472 (The resource returned by stream_socket_accept may have
+    incorrect metadata). (Jakub Zelenka)
+  . Fixed bug GH-8409 (SSL handshake timeout leaves persistent connections
+    hanging). (Jakub Zelenka, Twosee)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.1.9]" />
+		<dependency id="php" version="[8.1.10]" />
     </dependencies>
   </metadata>
   <files>
