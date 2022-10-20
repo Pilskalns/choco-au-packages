@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.21.6-mainline</version>
+    <version>1.23.2-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,13 +57,37 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Bugfix: when using EPOLLEXCLUSIVE on Linux client connections were
-   unevenly distributed among worker processes.
+	<releaseNotes><![CDATA[*) Security: processing of a specially crafted mp4 file by the
+   ngx_http_mp4_module might cause a worker process crash, worker
+   process memory disclosure, or might have potential other impact
+   (CVE-2022-41741, CVE-2022-41742).
 
-*) Bugfix: nginx returned the "Connection: keep-alive" header line in
-   responses during graceful shutdown of old worker processes.
+*) Feature: the "$proxy_protocol_tlv_..." variables.
 
-*) Bugfix: in the "ssl_session_ticket_key" when using TLSv1.3.]]></releaseNotes>
+*) Feature: TLS session tickets encryption keys are now automatically
+   rotated when using shared memory in the "ssl_session_cache"
+   directive.
+
+*) Change: the logging level of the "bad record type" SSL errors has
+   been lowered from "crit" to "info".
+   Thanks to Murilo Andrade.
+
+*) Change: now when using shared memory in the "ssl_session_cache"
+   directive the "could not allocate new session" errors are logged at
+   the "warn" level instead of "alert" and not more often than once per
+   second.
+
+*) Bugfix: nginx/Windows could not be built with OpenSSL 3.0.x.
+
+*) Bugfix: in logging of the PROXY protocol errors.
+   Thanks to Sergey Brester.
+
+*) Workaround: shared memory from the "ssl_session_cache" directive was
+   spent on sessions using TLS session tickets when using TLSv1.3 with
+   OpenSSL.
+
+*) Workaround: timeout specified with the "ssl_session_timeout"
+   directive did not work when using TLSv1.3 with OpenSSL or BoringSSL.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
