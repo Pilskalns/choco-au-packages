@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.1.12</version>
+    <version>8.1.13</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,38 +25,43 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixes segfault with Fiber on FreeBSD i386 architecture. (David Carlier)
+	  <releaseNotes><![CDATA[- CLI:
+  . Fixed bug GH-9709 (Null pointer dereference with -w/-s options). (Adam Saponara)
 
-- Fileinfo:
-  . Fixed bug GH-8805 (finfo returns wrong mime type for woff/woff2 files).
-    (Anatol)
+- Core:
+  . Fixed bug GH-9752 (Generator crashes when interrupted during argument
+    evaluation with extra named params). (Arnaud)
+  . Fixed bug GH-9801 (Generator crashes when memory limit is exceeded during
+    initialization). (Arnaud)
+  . Fixed potential NULL pointer dereference Windows shm*() functions. (cmb)
+  . Fixed bug GH-9750 (Generator memory leak when interrupted during argument
+    evaluation. (Arnaud)
 
-- GD:
-  . Fixed bug #81739: OOB read due to insufficient input validation in
-    imageloadfont(). (CVE-2022-31630) (cmb)
+- Date:
+  . Fixed bug GH-9763 (DateTimeZone ctr mishandles input and adds null byte if
+    the argument is an offset larger than 100*60 minutes). (Derick)
 
-- Hash:
-  . Fixed bug #81738: buffer overflow in hash_update() on long parameter.
-    (CVE-2022-37454) (nicky at mouha dot be)
+- FPM:
+  . Fixed bug GH-9754 (SaltStack (using Python subprocess) hangs when running
+    php-fpm 8.1.11). (Jakub Zelenka)
 
-- MBString:
-  - Fixed bug GH-9683 (Problem when ISO-2022-JP-MS is specified in
-    mb_ encode_mimeheader). (Alex Dowad)
+- mysqli:
+  . Fixed bug GH-9841 (mysqli_query throws warning despite using
+    silenced error mode). (Kamil Tekiela)
 
-- Opcache:
-  . Added indirect call reduction for jit on x86 architectures. (wxue1)
+- MySQLnd:
+  . Fixed potential heap corruption due to alignment mismatch. (cmb)
 
-- Session:
-  . Fixed bug GH-9583 (session_create_id() fails with user defined save handler
-    that doesn't have a validateId() method). (Girgias)
+- OpenSSL:
+  . Fixed bug GH-8430 (OpenSSL compiled with no-md2, no-md4 or no-rmd160 does
+    not build). (Jakub Zelenka, fsbruva)
 
-- Streams:
-  . Fixed bug GH-9590 (stream_select does not abort upon exception or empty
-    valid fd set). (Arnaud)]]></releaseNotes>
+- SOAP:
+  . Fixed GH-9720 (Null pointer dereference while serializing the response).
+    (cmb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.1.12]" />
+		<dependency id="php" version="[8.1.13]" />
     </dependencies>
   </metadata>
   <files>
