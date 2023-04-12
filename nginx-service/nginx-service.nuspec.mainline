@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.23.2-mainline</version>
+    <version>1.23.4-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -12,7 +12,7 @@
     <authors>Igor Sysoev</authors>
     <projectUrl>http://nginx.org/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/nginx-service/nginx-service.png</iconUrl>
-    <copyright>2022 &#169; Nginx, Inc.</copyright>
+    <copyright>2023 &#169; Nginx, Inc.</copyright>
     <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://trac.nginx.org/nginx/browser</projectSourceUrl>
@@ -57,37 +57,48 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: processing of a specially crafted mp4 file by the
-   ngx_http_mp4_module might cause a worker process crash, worker
-   process memory disclosure, or might have potential other impact
-   (CVE-2022-41741, CVE-2022-41742).
+	<releaseNotes><![CDATA[*) Change: now TLSv1.3 protocol is enabled by default.
 
-*) Feature: the "$proxy_protocol_tlv_..." variables.
+*) Change: now nginx issues a warning if protocol parameters of a
+   listening socket are redefined.
 
-*) Feature: TLS session tickets encryption keys are now automatically
-   rotated when using shared memory in the "ssl_session_cache"
-   directive.
+*) Change: now nginx closes connections with lingering if pipelining was
+   used by the client.
 
-*) Change: the logging level of the "bad record type" SSL errors has
-   been lowered from "crit" to "info".
-   Thanks to Murilo Andrade.
+*) Feature: byte ranges support in the ngx_http_gzip_static_module.
 
-*) Change: now when using shared memory in the "ssl_session_cache"
-   directive the "could not allocate new session" errors are logged at
-   the "warn" level instead of "alert" and not more often than once per
-   second.
+*) Bugfix: port ranges in the "listen" directive did not work; the bug
+   had appeared in 1.23.3.
+   Thanks to Valentin Bartenev.
 
-*) Bugfix: nginx/Windows could not be built with OpenSSL 3.0.x.
+*) Bugfix: incorrect location might be chosen to process a request if a
+   prefix location longer than 255 characters was used in the
+   configuration.
 
-*) Bugfix: in logging of the PROXY protocol errors.
-   Thanks to Sergey Brester.
+*) Bugfix: non-ASCII characters in file names on Windows were not
+   supported by the ngx_http_autoindex_module, the ngx_http_dav_module,
+   and the "include" directive.
 
-*) Workaround: shared memory from the "ssl_session_cache" directive was
-   spent on sessions using TLS session tickets when using TLSv1.3 with
-   OpenSSL.
+*) Change: the logging level of the "data length too long", "length too
+   short", "bad legacy version", "no shared signature algorithms", "bad
+   digest length", "missing sigalgs extension", "encrypted length too
+   long", "bad length", "bad key update", "mixed handshake and non
+   handshake data", "ccs received early", "data between ccs and
+   finished", "packet length too long", "too many warn alerts", "record
+   too small", and "got a fin before a ccs" SSL errors has been lowered
+   from "crit" to "info".
 
-*) Workaround: timeout specified with the "ssl_session_timeout"
-   directive did not work when using TLSv1.3 with OpenSSL or BoringSSL.]]></releaseNotes>
+*) Bugfix: a socket leak might occur when using HTTP/2 and the
+   "error_page" directive to redirect errors with code 400.
+
+*) Bugfix: messages about logging to syslog errors did not contain
+   information that the errors happened while logging to syslog.
+   Thanks to Safar Safarly.
+
+*) Workaround: "gzip filter failed to use preallocated memory" alerts
+   appeared in logs when using zlib-ng.
+
+*) Bugfix: in the mail proxy server.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
