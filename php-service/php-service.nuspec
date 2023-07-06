@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.2.7</version>
+    <version>8.2.8</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,85 +25,82 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- Core:
-  . Fixed bug GH-11152 (Unable to alias namespaces containing reserved class
-    names). (ilutov)
-  . Fixed bug GH-9068 (Conditional jump or move depends on uninitialised
-    value(s)). (nielsdos)
-  . Fixed bug GH-11189 (Exceeding memory limit in zend_hash_do_resize leaves
-    the array in an invalid state). (Bob)
-  . Fixed bug GH-11063 (Compilation error on old GCC versions). (ingamedeo)
-  . Fixed bug GH-11222 (foreach by-ref may jump over keys during a rehash).
-    (Bob)
+	  <releaseNotes><![CDATA[- CLI:
+  . Fixed bug GH-11246 (cli/get_set_process_title fails on MacOS).
+    (James Lucas)
+
+- Core:
+  . Fixed build for the riscv64 architecture/GCC 12. (Daniil Gentili)
+
+- Curl:
+  . Fixed bug GH-11433 (Unable to set CURLOPT_ACCEPT_ENCODING to NULL).
+    (nielsdos)
 
 - Date:
-  . Fixed bug GH-11281 (DateTimeZone::getName() does not include seconds in
-    offset). (nielsdos)
-
-- Exif:
-  . Fixed bug GH-10834 (exif_read_data() cannot read smaller stream wrapper
-    chunk sizes). (nielsdos)
-
-- FPM:
-  . Fixed bug GH-10461 (PHP-FPM segfault due to after free usage of
-    child->ev_std(out|err)). (Jakub Zelenka)
-  . Fixed bug #64539 (FPM status page: query_string not properly JSON encoded).
-    (Jakub Zelenka)
-  . Fixed memory leak for invalid primary script file handle. (Jakub Zelenka)
-
-- Hash:
-  . Fixed bug GH-11180 (hash_file() appears to be restricted to 3 arguments).
+  . Fixed bug GH-11455 (Segmentation fault with custom object date properties).
     (nielsdos)
 
-- LibXML:
-  . Fixed bug GH-11160 (Few tests failed building with new libxml 2.11.0).
+- DOM:
+  . Fixed bugs GH-11288 and GH-11289 and GH-11290 and GH-9142 (DOMExceptions
+    and segfaults with replaceWith). (nielsdos)
+  . Fixed bug GH-10234 (Setting DOMAttr::textContent results in an empty
+    attribute value). (nielsdos)
+  . Fix return value in stub file for DOMNodeList::item. (divinity76)
+  . Fix spec compliance error with '*' namespace for
+    DOMDocument::getElementsByTagNameNS. (nielsdos)
+  . Fix DOMElement::append() and DOMElement::prepend() hierarchy checks.
     (nielsdos)
-
-- MBString:
-  . Fix bug GH-11217 (Segfault in mb_strrpos / mb_strripos when using negative
-    offset and ASCII encoding). (ilutov)
+  . Fixed bug GH-11347 (Memory leak when calling a static method inside an
+    xpath query). (nielsdos)
+  . Fixed bug #67440 (append_node of a DOMDocumentFragment does not reconcile
+    namespaces). (nielsdos)
+  . Fixed bug #81642 (DOMChildNode::replaceWith() bug when replacing a node
+    with itself). (nielsdos)
+  . Fixed bug #77686 (Removed elements are still returned by getElementById).
+    (nielsdos)
+  . Fixed bug #70359 (print_r() on DOMAttr causes Segfault in
+    php_libxml_node_free_list()). (nielsdos)
+  . Fixed bug #78577 (Crash in DOMNameSpace debug info handlers). (nielsdos)
+  . Fix lifetime issue with getAttributeNodeNS(). (nielsdos)
+  . Fix "invalid state error" with cloned namespace declarations. (nielsdos)
+  . Fixed bug #55294 and #47530 and #47847 (various namespace reconciliation
+    issues). (nielsdos)
+  . Fixed bug #80332 (Completely broken array access functionality with
+    DOMNamedNodeMap). (nielsdos)
 
 - Opcache:
-  . Fixed bug GH-11134 (Incorrect match default branch optimization). (ilutov)
-  . Fixed too wide OR and AND range inference. (nielsdos)
-  . Fixed missing class redeclaration error with OPcache enabled. (ilutov)
-  . Fixed bug GH-11245 (In some specific cases SWITCH with one default
-    statement will cause segfault). (nielsdos)
+  . Fix allocation loop in zend_shared_alloc_startup(). (nielsdos)
+  . Access violation on smm_shared_globals with ALLOC_FALLBACK. (KoudelkaB)
+  . Fixed bug GH-11336 (php still tries to unlock the shared memory ZendSem
+    with opcache.file_cache_only=1 but it was never locked). (nielsdos)
 
-- PCNTL:
-  . Fixed maximum argument count of pcntl_forkx(). (nielsdos)
+- OpenSSL:
+  . Fixed bug GH-9356 Incomplete validation of IPv6 Address fields in
+    subjectAltNames (James Lucas, Jakub Zelenka).
+
+- PCRE:
+  . Fix preg_replace_callback_array() pattern validation. (ilutov)
 
 - PGSQL:
-  . Fixed parameter parsing of pg_lo_export(). (kocsismate)
+  . Fixed intermittent segfault with pg_trace. (David Carlier)
 
 - Phar:
-  . Fixed bug GH-11099 (Generating phar.php during cross-compile can't be
-    done). (peter279k)
-
-- Soap:
-  . Fixed bug GHSA-76gg-c692-v2mw (Missing error check and insufficient random
-    bytes in HTTP Digest authentication for SOAP). (nielsdos, timwolla)
-  . Fixed bug GH-8426 (make test fail while soap extension build). (nielsdos)
+  . Fix cross-compilation check in phar generation for FreeBSD. (peter279k)
 
 - SPL:
-  . Fixed bug GH-11178 (Segmentation fault in spl_array_it_get_current_data
-    (PHP 8.1.18)). (nielsdos)
+  . Fixed bug GH-11338 (SplFileInfo empty getBasename with more than one
+    slash). (nielsdos)
 
 - Standard:
-  . Fixed bug GH-11138 (move_uploaded_file() emits open_basedir warning for
-    source file). (ilutov)
-  . Fixed bug GH-11274 (POST/PATCH request switches to GET after a HTTP 308
-    redirect). (nielsdos)
+  . Fix access on NULL pointer in array_merge_recursive(). (ilutov)
+  . Fix exception handling in array_multisort(). (ilutov)
 
-- Streams:
-  . Fixed bug GH-10031 ([Stream] STREAM_NOTIFY_PROGRESS over HTTP emitted
-    irregularly for last chunk of data). (nielsdos)
-  . Fixed bug GH-11175 (Stream Socket Timeout). (nielsdos)
-  . Fixed bug GH-11177 (ASAN UndefinedBehaviorSanitizer when timeout = -1
-    passed to stream_socket_accept/stream_socket_client). (nielsdos)]]></releaseNotes>
+- SQLite3:
+  . Fixed bug GH-11451 (Invalid associative array containing duplicate
+    keys). (nielsdos)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.2.7]" />
+		<dependency id="php" version="[8.2.8]" />
     </dependencies>
   </metadata>
   <files>
