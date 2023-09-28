@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>php-service</id>
-    <version>8.2.10</version>
+    <version>8.2.11</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/php-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -25,83 +25,53 @@ Fast, flexible and pragmatic, PHP powers everything from your blog to the most p
 
 This package will install [PHP (Hypertext Preprocessor)](https://chocolatey.org/packages/php) with it's default values. Its installed trough dependencies and those can't be passed with extra arguments.
 ]]></description>
-	  <releaseNotes><![CDATA[- CLI:
-  . Fixed bug GH-11716 (cli server crashes on SIGINT when compiled with
-    ZEND_RC_DEBUG=1). (nielsdos)
-  . Fixed bug GH-10964 (Improve man page about the built-in server).
-    (Alexandre Daubois)
-
-- Date:
-  . Fixed bug GH-11416 (Crash with DatePeriod when uninitialised objects are
-    passed in). (Derick)
-
-- Core:
-  . Fixed strerror_r detection at configuration time. (KÃ©vin Dunglas)
-  . Fixed trait typed properties using a DNF type not being correctly bound.
+	  <releaseNotes><![CDATA[- Core:
+  . Fixed bug GH-11937 (Constant ASTs containing objects). (ilutov)
+  . Fixed bug GH-11790 (On riscv64 require libatomic if actually needed).
+    (Jeremie Courreges-Anglas)
+  . Fixed bug GH-11876: ini_parse_quantity() accepts invalid quantities.
     (Girgias)
-  . Fixed trait property types not being arena allocated if copied from
-    an internal trait. (Girgias)
-  . Fixed deep copy of property DNF type during lazy class load.
-    (Girgias, ilutov)
-  . Fixed memory freeing of DNF types for non arena allocated types.
-    (Girgias, ju1ius)
+  . Fixed bug GH-12073 (Segfault when freeing incompletely initialized
+    closures). (ilutov)
+  . Fixed bug GH-12060 (Internal iterator rewind handler is called twice).
+    (ju1ius)
+  . Fixed bug GH-12102 (Incorrect compile error when using array access on TMP
+    value in function call). (ilutov)
 
 - DOM:
-  . Fix DOMEntity field getter bugs. (nielsdos)
-  . Fix incorrect attribute existence check in DOMElement::setAttributeNodeNS.
-    (nielsdos)
-  . Fix DOMCharacterData::replaceWith() with itself. (nielsdos)
-  . Fix empty argument cases for DOMParentNode methods. (nielsdos)
-  . Fixed bug GH-11791 (Wrong default value of DOMDocument::xmlStandalone).
-    (nielsdos)
-  . Fix json_encode result on DOMDocument. (nielsdos)
-  . Fix manually calling __construct() on DOM classes. (nielsdos)
-  . Fixed bug GH-11830 (ParentNode methods should perform their checks
-    upfront). (nielsdos)
-  . Fix viable next sibling search for replaceWith. (nielsdos)
-  . Fix segfault when DOMParentNode::prepend() is called when the child
-    disappears. (nielsdos)
+  . Fix memory leak when setting an invalid DOMDocument encoding. (nielsdos)
 
-- FFI:
-  . Fix leaking definitions when using FFI::cdef()->new(...). (ilutov)
+- Iconv:
+  . Fixed build for NetBSD which still uses the old iconv signature.
+    (David Carlier)
 
-- Hash:
-  . Fix use-of-uninitialized-value in hash_pbkdf2(), fix missing $options
-    parameter in signature. (ilutov)
+- Intl:
+  . Fixed bug GH-12020 (intl_get_error_message() broken after
+    MessageFormatter::formatMessage() fails). (Girgias)
 
 - MySQLnd:
-  . Fixed bug GH-11440 (authentication to a sha256_password account fails over
-    SSL). (nielsdos)
-  . Fixed bug GH-11438 (mysqlnd fails to authenticate with sha256_password
-    accounts using passwords longer than 19 characters).
-    (nielsdos, Kamil Tekiela)
-  . Fixed bug GH-11550 (MySQL Statement has a empty query result when
-    the response field has changed, also Segmentation fault).
-    (Yurunsoft)
-  . Fixed invalid error message "Malformed packet" when connection is dropped.
-    (Kamil Tekiela)
+  . Fixed bug GH-10270 (Invalid error message when connection via SSL fails:
+    "trying to connect via (null)"). (Kamil Tekiela)
 
-- Opcache:
-  . Fixed bug GH-11715 (opcache.interned_strings_buffer either has no effect or
-    opcache_get_status() / phpinfo() is wrong). (nielsdos)
-  . Avoid adding an unnecessary read-lock when loading script from shm if
-    restart is in progress. (mikhainin)
+- ODBC:
+  . Fixed memory leak with failed SQLPrepare. (NattyNarwhal)
+  . Fixed persistent procedural ODBC connections not getting closed.
+    (NattyNarwhal)
 
-- PCNTL:
-  . Revert behaviour of receiving SIGCHLD signals back to the behaviour
-    before 8.1.22. (nielsdos)
+- SimpleXML:
+  . Fixed bug #52751 (XPath processing-instruction() function is not
+    supported). (nielsdos)
 
 - SPL:
-  . Fixed bug #81992 (SplFixedArray::setSize() causes use-after-free).
+  . Fixed bug GH-11972 (RecursiveCallbackFilterIterator regression in 8.1.18).
     (nielsdos)
 
-- Standard:
-  . Prevent int overflow on $decimals in number_format. (Marc Bennewitz)
-  . Fixed bug GH-11870 (Fix off-by-one bug when truncating tempnam prefix)
-    (athos-ribeiro)]]></releaseNotes>
+- SQLite3:
+  . Fixed bug GH-11878 (SQLite3 callback functions cause a memory leak with
+    a callable array). (nielsdos, arnaud-lb)]]></releaseNotes>
     <dependencies>
 		<dependency id="nssm" version="2.24.0" />
-		<dependency id="php" version="[8.2.10]" />
+		<dependency id="php" version="[8.2.11]" />
     </dependencies>
   </metadata>
   <files>
