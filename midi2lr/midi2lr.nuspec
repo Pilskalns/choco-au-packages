@@ -3,14 +3,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>midi2lr</id>
-    <version>6.0.1.0</version>
+    <version>6.0.2.0</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/midi2lr</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
     <title>MIDI2LR</title>
     <authors>Rory Jaffe</authors>
     <projectUrl>https://github.com/rsjaffe/MIDI2LR</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/midi2lr/MIDI2LR.png</iconUrl>
-    <copyright>2023 &#169; Rory Jaffe</copyright>
+    <copyright>2024 &#169; Rory Jaffe</copyright>
     <licenseUrl>https://github.com/rsjaffe/MIDI2LR/blob/master/LICENSE.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <docsUrl>https://github.com/rsjaffe/MIDI2LR/wiki</docsUrl>
