@@ -3,12 +3,12 @@ VERIFICATION
 Nginx for each release provide a ZIP file and .asc signature file.
 Files are listed on the official page http://nginx.org/en/download.html
 
-This package bin\ content includes the release ZIP file, obtained from https://nginx.org/download/nginx-1.24.0.zip
+This package bin\ content includes the release ZIP file, obtained from https://nginx.org/download/nginx-1.26.0.zip
 
 Package also includes VERIFICATION.ps1, which essentially does the following:
 
     1. Downloads Maxim Dounin’s publick key from https://nginx.org/en/pgp_keys.html
-    2. Downloads signature for this release: https://nginx.org/download/nginx-1.24.0.zip.asc
+    2. Downloads signature for this release: https://nginx.org/download/nginx-1.26.0.zip.asc
     3. Verifies signature authenticity against bin\nginx.zip
 
 File 'LICENSE.txt' is obtained from <https://nginx.org/LICENSE>
