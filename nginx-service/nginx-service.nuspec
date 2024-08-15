@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.26.1</version>
+    <version>1.26.2</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,21 +57,10 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: when using HTTP/3, processing of a specially crafted QUIC
-   session might cause a worker process crash, worker process memory
-   disclosure on systems with MTU larger than 4096 bytes, or might have
-   potential other impact (CVE-2024-32760, CVE-2024-31079,
-   CVE-2024-35200, CVE-2024-34161).
-   Thanks to Nils Bars of CISPA.
-
-*) Bugfix: reduced memory consumption for long-lived requests if "gzip",
-   "gunzip", "ssi", "sub_filter", or "grpc_pass" directives are used.
-
-*) Bugfix: nginx could not be built by gcc 14 if the --with-atomic
-   option was used.
-   Thanks to Edgar Bonet.
-
-*) Bugfix: in HTTP/3.]]></releaseNotes>
+	<releaseNotes><![CDATA[*) Security: processing of a specially crafted mp4 file by the
+   ngx_http_mp4_module might cause a worker process crash
+   (CVE-2024-7347).
+   Thanks to Nils Bars.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
