@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.27.1-mainline</version>
+    <version>1.27.4-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -12,7 +12,7 @@
     <authors>Igor Sysoev</authors>
     <projectUrl>http://nginx.org/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/nginx-service/nginx-service.png</iconUrl>
-    <copyright>2024 &#169; Nginx, Inc.</copyright>
+    <copyright>2025 &#169; Nginx, Inc.</copyright>
     <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://trac.nginx.org/nginx/browser</projectSourceUrl>
@@ -57,16 +57,30 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: processing of a specially crafted mp4 file by the
-   ngx_http_mp4_module might cause a worker process crash
-   (CVE-2024-7347).
-   Thanks to Nils Bars.
+	<releaseNotes><![CDATA[*) Security: insufficient check in virtual servers handling with TLSv1.3
+   SNI allowed to reuse SSL sessions in a different virtual server, to
+   bypass client SSL certificates verification (CVE-2025-23419).
 
-*) Change: now the stream module handler is not mandatory.
+*) Feature: the "ssl_object_cache_inheritable", "ssl_certificate_cache",
+   "proxy_ssl_certificate_cache", "grpc_ssl_certificate_cache", and
+   "uwsgi_ssl_certificate_cache" directives.
 
-*) Bugfix: new HTTP/2 connections might ignore graceful shutdown of old
-   worker processes.
-   Thanks to Kasei Wang.
+*) Feature: the "keepalive_min_timeout" directive.
+
+*) Workaround: "gzip filter failed to use preallocated memory" alerts
+   appeared in logs when using zlib-ng.
+
+*) Bugfix: nginx could not build libatomic library using the library
+   sources if the --with-libatomic=DIR option was used.
+
+*) Bugfix: QUIC connection might not be established when using 0-RTT;
+   the bug had appeared in 1.27.1.
+
+*) Bugfix: nginx now ignores QUIC version negotiation packets from
+   clients.
+
+*) Bugfix: nginx could not be built on Solaris 10 and earlier with the
+   ngx_http_v3_module.
 
 *) Bugfixes in HTTP/3.]]></releaseNotes>
     <dependencies>
