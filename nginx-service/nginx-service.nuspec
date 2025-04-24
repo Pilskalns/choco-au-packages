@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.26.3</version>
+    <version>1.28.0</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,26 +57,13 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: insufficient check in virtual servers handling with TLSv1.3
-   SNI allowed to reuse SSL sessions in a different virtual server, to
-   bypass client SSL certificates verification (CVE-2025-23419).
+	<releaseNotes><![CDATA[*) 1.28.x stable branch.
 
-*) Bugfix: in the ngx_http_mp4_module.
-   Thanks to Nils Bars.
+*) Bugfix: nginx could not be built by gcc 15 if ngx_http_v2_module or
+   ngx_http_v3_module modules were used.
 
-*) Workaround: "gzip filter failed to use preallocated memory" alerts
-   appeared in logs when using zlib-ng.
-
-*) Bugfix: nginx could not build libatomic library using the library
-   sources if the --with-libatomic=DIR option was used.
-
-*) Bugfix: nginx now ignores QUIC version negotiation packets from
-   clients.
-
-*) Bugfix: nginx could not be built on Solaris 10 and earlier with the
-   ngx_http_v3_module.
-
-*) Bugfixes in HTTP/3.]]></releaseNotes>
+*) Bugfix: nginx might not be built by gcc 14 or newer with -O3 -flto
+   optimization if ngx_http_v3_module was used.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>

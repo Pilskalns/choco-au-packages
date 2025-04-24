@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.27.4-mainline</version>
+    <version>1.27.5-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,32 +57,23 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: insufficient check in virtual servers handling with TLSv1.3
-   SNI allowed to reuse SSL sessions in a different virtual server, to
-   bypass client SSL certificates verification (CVE-2025-23419).
+	<releaseNotes><![CDATA[*) Feature: CUBIC congestion control in QUIC connections.
 
-*) Feature: the "ssl_object_cache_inheritable", "ssl_certificate_cache",
-   "proxy_ssl_certificate_cache", "grpc_ssl_certificate_cache", and
-   "uwsgi_ssl_certificate_cache" directives.
+*) Change: the maximum size limit for SSL sessions cached in shared
+   memory has been raised to 8192.
 
-*) Feature: the "keepalive_min_timeout" directive.
+*) Bugfix: in the "grpc_ssl_password_file", "proxy_ssl_password_file",
+   and "uwsgi_ssl_password_file" directives when loading SSL
+   certificates and encrypted keys from variables; the bug had appeared
+   in 1.23.1.
 
-*) Workaround: "gzip filter failed to use preallocated memory" alerts
-   appeared in logs when using zlib-ng.
+*) Bugfix: in the $ssl_curve and $ssl_curves variables when using
+   pluggable curves in OpenSSL.
 
-*) Bugfix: nginx could not build libatomic library using the library
-   sources if the --with-libatomic=DIR option was used.
+*) Bugfix: nginx could not be built with musl libc.
+   Thanks to Piotr Sikora.
 
-*) Bugfix: QUIC connection might not be established when using 0-RTT;
-   the bug had appeared in 1.27.1.
-
-*) Bugfix: nginx now ignores QUIC version negotiation packets from
-   clients.
-
-*) Bugfix: nginx could not be built on Solaris 10 and earlier with the
-   ngx_http_v3_module.
-
-*) Bugfixes in HTTP/3.]]></releaseNotes>
+*) Performance improvements and bugfixes in HTTP/3.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
