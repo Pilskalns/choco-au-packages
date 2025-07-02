@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>midi2lr</id>
-    <version>6.2.0.1</version>
+    <version>6.2.1.0</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/midi2lr</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
     <title>MIDI2LR</title>
