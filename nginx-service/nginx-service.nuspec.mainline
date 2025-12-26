@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.27.5-mainline</version>
+    <version>1.29.4-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,23 +57,26 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Feature: CUBIC congestion control in QUIC connections.
+	<releaseNotes><![CDATA[*) Feature: the ngx_http_proxy_module supports HTTP/2.
 
-*) Change: the maximum size limit for SSL sessions cached in shared
-   memory has been raised to 8192.
+*) Feature: Encrypted ClientHello TLS extension support when using
+   OpenSSL ECH feature branch; the "ssl_ech_file" directive.
+   Thanks to Stephen Farrell.
 
-*) Bugfix: in the "grpc_ssl_password_file", "proxy_ssl_password_file",
-   and "uwsgi_ssl_password_file" directives when loading SSL
-   certificates and encrypted keys from variables; the bug had appeared
-   in 1.23.1.
+*) Change: validation of host and port in the request line, "Host"
+   header field, and ":authority" pseudo-header field has been changed
+   to follow RFC 3986.
 
-*) Bugfix: in the $ssl_curve and $ssl_curves variables when using
-   pluggable curves in OpenSSL.
+*) Change: now a single LF used as a line terminator in a chunked
+   request or response body is considered an error.
 
-*) Bugfix: nginx could not be built with musl libc.
-   Thanks to Piotr Sikora.
+*) Bugfix: when using HTTP/3 with OpenSSL 3.5.1 or newer a segmentation
+   fault might occur in a worker process; the bug had appeared in
+   1.29.1.
+   Thanks to Jan Svojanovsky.
 
-*) Performance improvements and bugfixes in HTTP/3.]]></releaseNotes>
+*) Bugfix: a segmentation fault might occur in a worker process if the
+   "try_files" directive and "proxy_pass" with a URI were used.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
