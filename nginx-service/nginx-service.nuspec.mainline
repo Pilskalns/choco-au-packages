@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.29.4-mainline</version>
+    <version>1.29.5-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -12,7 +12,7 @@
     <authors>Igor Sysoev</authors>
     <projectUrl>http://nginx.org/</projectUrl>
     <iconUrl>http://cdn.rawgit.com/Pilskalns/choco-au-packages/master/nginx-service/nginx-service.png</iconUrl>
-    <copyright>2025 &#169; Nginx, Inc.</copyright>
+    <copyright>2026 &#169; Nginx, Inc.</copyright>
     <licenseUrl>http://nginx.org/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://trac.nginx.org/nginx/browser</projectSourceUrl>
@@ -57,26 +57,25 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Feature: the ngx_http_proxy_module supports HTTP/2.
+	<releaseNotes><![CDATA[*) Security: an attacker might inject plain text data in the response
+   from an SSL backend (CVE-2026-1642).
 
-*) Feature: Encrypted ClientHello TLS extension support when using
-   OpenSSL ECH feature branch; the "ssl_ech_file" directive.
-   Thanks to Stephen Farrell.
+*) Bugfix: use-after-free might occur after switching to the next gRPC
+   or HTTP/2 backend.
 
-*) Change: validation of host and port in the request line, "Host"
-   header field, and ":authority" pseudo-header field has been changed
-   to follow RFC 3986.
+*) Bugfix: an invalid HTTP/2 request might be sent after switching to
+   the next upstream.
 
-*) Change: now a single LF used as a line terminator in a chunked
-   request or response body is considered an error.
+*) Bugfix: a response with multiple ranges might be larger than the
+   source response.
 
-*) Bugfix: when using HTTP/3 with OpenSSL 3.5.1 or newer a segmentation
-   fault might occur in a worker process; the bug had appeared in
-   1.29.1.
-   Thanks to Jan Svojanovsky.
+*) Bugfix: fixed setting HTTP_HOST when proxying to FastCGI, SCGI, and
+   uwsgi backends.
 
-*) Bugfix: a segmentation fault might occur in a worker process if the
-   "try_files" directive and "proxy_pass" with a URI were used.]]></releaseNotes>
+*) Bugfix: fixed warning when compiling with MSVC 2022 x86.
+
+*) Change: the logging level of the "ech_required" SSL error has been
+   lowered from "crit" to "info".]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
