@@ -4,7 +4,7 @@
   <metadata>
 	<!-- == PACKAGE SPECIFIC SECTION == -->
     <id>nginx-service</id>
-    <version>1.29.7-mainline</version>
+    <version>1.29.8-mainline</version>
     <packageSourceUrl>https://github.com/Pilskalns/choco-au-packages/tree/master/nginx-service</packageSourceUrl>
     <owners>Andzs Pilskalns</owners>
 	<!-- == SOFTWARE SPECIFIC SECTION == -->
@@ -57,54 +57,19 @@ On default, the service will autostart with Windows. To disable this use Service
 
 See the [nginx.org](https://nginx.org) for more detailed documentation.
 ]]></description>
-	<releaseNotes><![CDATA[*) Security: a buffer overflow might occur while handling a COPY or MOVE
-   request in a location with "alias", allowing an attacker to modify
-   the source or destination path outside of the document root
-   (CVE-2026-27654).
-   Thanks to Calif.io in collaboration with Claude and Anthropic
-   Research.
+	<releaseNotes><![CDATA[*) Feature: the "max_headers" directive.
+   Thanks to Maxim Dounin.
 
-*) Security: processing of a specially crafted mp4 file by the
-   ngx_http_mp4_module on 32-bit platforms might cause a worker process
-   crash, or might have potential other impact (CVE-2026-27784).
-   Thanks to Prabhav Srinath (sprabhav7).
+*) Feature: OpenSSL 4.0 compatibility.
 
-*) Security: processing of a specially crafted mp4 file by the
-   ngx_http_mp4_module might cause a worker process crash, or might have
-   potential other impact (CVE-2026-32647).
-   Thanks to Xint Code and Pavel Kohout (Aisle Research).
+*) Feature: now the "include" directive inside the "geo" block supports
+   wildcards.
 
-*) Security: a segmentation fault might occur in a worker process if the
-   CRAM-MD5 or APOP authentication methods were used and authentication
-   retry was enabled (CVE-2026-27651).
-   Thanks to Arkadi Vainbrand.
+*) Bugfix: in processing of HTTP 103 (Early Hints) responses from a
+   proxied backend.
 
-*) Security: an attacker might use PTR DNS records to inject data in
-   auth_http requests, as well as in the XCLIENT command in the backend
-   SMTP connection (CVE-2026-28753).
-   Thanks to Asim Viladi Oglu Manizada, Colin Warren, Xiao Liu (Yunnan
-   University), Yuan Tan (UC Riverside), and Bird Liu (Lanzhou
-   University).
-
-*) Security: SSL handshake might succeed despite OCSP rejecting a client
-   certificate in the stream module (CVE-2026-28755).
-   Thanks to Mufeed VH of Winfunc Research.
-
-*) Feature: the "multipath" parameter of the "listen" directive.
-
-*) Feature: the "local" parameter of the "keepalive" directive in the
-   "upstream" block.
-
-*) Change: now the "keepalive" directive in the "upstream" block is
-   enabled by default.
-
-*) Change: now ngx_http_proxy_module supports keepalive by default; the
-   default value for "proxy_http_version" is "1.1"; the "Connection"
-   proxy header is not sent by default anymore.
-
-*) Bugfix: an invalid HTTP/2 request might be sent after switching to
-   the next upstream if buffered body was used in the
-   ngx_http_grpc_module.]]></releaseNotes>
+*) Bugfix: the $request_port and $is_request_port variables were not
+   available in subrequests.]]></releaseNotes>
     <dependencies>
 		  <dependency id="nssm" version="2.24.0" />
     </dependencies>
